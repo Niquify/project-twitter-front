@@ -1,0 +1,22 @@
+ <form ng-submit="profileCtrl.getUserProfile()" novalidate>
+    <div id="user-profile" ng-show="profileCtrl.isProfileFetched">
+        <div class="user-main">
+            <div id="profileImg" class="pull-left">
+                <img src="{{profileCtrl.profile.profileImageUrl}}" alt="Profile Picture"/>
+            </div>
+            <h3>{{profileCtrl.profile.userName}}<code>#{{profileCtrl.profile.userId}}</code></h3>
+            <a href="https://twitter.com/{{profileCtrl.profile.screenName}}">@{{profileCtrl.profile.screenName}}</a>
+            <span>{{profileCtrl.profile.location}}</span>
+            <p>{{profileCtrl.profile.description}}</p>
+        </div>
+        <div class="profile-tweets">
+            <span>
+                Tweets: {{profileCtrl.profile.tweetCount}}<br>
+                Following: {{profileCtrl.profile.friendsCount}}<br>
+                Followers: {{profileCtrl.profile.followersCount}}<br>
+                Favorites: {{profileCtrl.profile.favoritesCount}}<br>
+            </span>
+        </div>
+    </div>
+    <input type="text" id="userProfileInput" class="form-control" placeholder="Write the user's screen name" required/>
+</form>
