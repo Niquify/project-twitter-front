@@ -74,12 +74,12 @@
   cursor: text; }
 
 .tweet-date {
-  margin-top: 3.2px; }
+  margin-top: 5px;
+  color: gray; }
 
 .tweet-stats {
   margin-top: 8.4px; }
 
-.tweet-acti
 .tweet-action + .tweet-action {
   margin-left: 14px; }
 
@@ -91,7 +91,7 @@ html {
 
 body {
   /* Margin bottom by footer height */
-  margin-bottom: 60px; }
+  margin-bottom: 65px !important; }
 
 .footer {
   position: absolute;

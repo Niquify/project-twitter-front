@@ -5,6 +5,7 @@ var concat = require('gulp-concat');
 var minifyCss = require('gulp-clean-css');
 var minifyJs = require('gulp-uglify');
 var rename = require('gulp-rename');
+var replace = require('gulp-replace');
 
 gulp.task('sass', function() {
   return gulp.src('./scss/**/*.scss')
@@ -15,6 +16,7 @@ gulp.task('sass', function() {
 gulp.task('concat-css', ['sass'], function() {
   return gulp.src(['./dist/css/main.css', './lib/bootstrap/css/bootstrap.min.css'])
 	.pipe(concatCss('style.css'))
+  .pipe(replace('/lib/bootstrap/fonts/','/fonts/'))
 	.pipe(gulp.dest('./dist/css/'));
 });
 

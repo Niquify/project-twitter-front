@@ -1,4 +1,5 @@
 <div class="tweet-statistcs" ng-show="statsCtrl.isFetched">
+    <h3>Most retweeted:</h3>
     <div class="tweet">
         <div class="tweet-wrapper">
             <div class="tweet-content">
@@ -22,18 +23,53 @@
                         {{statsCtrl.stats.mostRetweeted.text}}
                     </div>
                     <span class="tweet-date">
-                        {{statsCtrol.stats.mostRetweeted.createdDate | date}}
+                        {{statsCtrl.stats.mostRetweeted.createdAt | date}}
                     </span>
                     <div class="tweet-stats">
-                        <span class="tweet-action">Retweeted: {{statsCtrl.stats.mostRetweeted.retweetCount}}</span>
-                        <span class="tweet-action">Favorited: {{statsCtrl.stats.mostRetweeted.favoriteCount}}</span>
+                        <span class="tweet-action"> <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> {{statsCtrl.stats.mostRetweeted.retweetCount}}</span>
+                        <span class="tweet-action"> <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> {{statsCtrl.stats.mostRetweeted.favoriteCount}}</span>
                     </div>
                 </div>
             </div>
-            
+
+        </div>
+    </div>
+    <h3>Most favorited:</h3>
+    <div class="tweet">
+        <div class="tweet-wrapper">
+            <div class="tweet-content">
+                <div class="tweet-header">
+                    <div class="tweet-author">
+                        <div class="tweet-author-link">
+                            <span class="tweet-author-avatar">
+                                <img class="tweet-avatar" alt="Avatar" src="{{statsCtrl.stats.mostRetweeted.userProfile.profileImageUrl}}">
+                            </span>
+                            <span class="tweet-author-name">
+                                {{statsCtrl.stats.mostRetweeted.userProfile.userName}}
+                            </span>
+                            <span class="tweet-author-screenName">
+                                @{{statsCtrl.stats.mostRetweeted.fromUserName}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="tweet-body">
+                    <div class="tweet-text">
+                        {{statsCtrl.stats.mostFavorited.text}}
+                    </div>
+                    <span class="tweet-date">
+                        {{statsCtrl.stats.mostFavorited.createdAt | date}}
+                    </span>
+                    <div class="tweet-stats">
+                        <span class="tweet-action"> <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> {{statsCtrl.stats.mostFavorited.retweetCount}}</span>
+                        <span class="tweet-action"> <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> {{statsCtrl.stats.mostFavorited.favoriteCount}}</span>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
-<form ng-submit="statsCtrl.getTweetStats()" novalidate ng-show="statsCtrl.isFetched">
+<form ng-submit="statsCtrl.getTweetStats()" novalidate ng-hide="statsCtrl.isFetched">
     <button type="submit">Get Tweet Stats</button>
 </form>
