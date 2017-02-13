@@ -14,6 +14,75 @@
 .user-main {
   height: 128px; }
 
+.tweet {
+  border: 1px solid #e1e8ed;
+  border-radius: 4px;
+  max-width: 520px; }
+
+.tweet-wrapper {
+  padding: 20px 20px 11.6px 20px; }
+
+.tweet-content {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border: none; }
+
+.tweet-header {
+  position: relative;
+  padding-left: 45px;
+  white-space: nowrap; }
+
+.tweet-author {
+  margin-top: 2px;
+  max-width: 100%;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+  word-wrap: normal !important; }
+
+.tweet-author-link {
+  font-weight: inherit;
+  color: inherit;
+  text-decoration: inherit; }
+
+.tweet-author-avatar {
+  position: absolute;
+  display: inline-block;
+  top: 0;
+  left: 0;
+  width: 36px;
+  height: 36px;
+  overflow: hidden;
+  background-color: transparent;
+  border-radius: 4px; }
+  .tweet-author-avatar img {
+    width: 36px;
+    height: 36px; }
+
+.tweet-author-name {
+  font-weight: 700;
+  display: block; }
+
+.tweet-author-screenName {
+  font-size: 14px; }
+
+.tweet-body {
+  margin-top: 14px; }
+
+.tweet-text {
+  cursor: text; }
+
+.tweet-date {
+  margin-top: 3.2px; }
+
+.tweet-stats {
+  margin-top: 8.4px; }
+
+.tweet-acti
+.tweet-action + .tweet-action {
+  margin-left: 14px; }
+
 /* Sticky footer styles
 -------------------------------------------------- */
 html {

@@ -1,0 +1,39 @@
+<div class="tweet-statistcs" ng-show="statsCtrl.isFetched">
+    <div class="tweet">
+        <div class="tweet-wrapper">
+            <div class="tweet-content">
+                <div class="tweet-header">
+                    <div class="tweet-author">
+                        <div class="tweet-author-link">
+                            <span class="tweet-author-avatar">
+                                <img class="tweet-avatar" alt="Avatar" src="{{statsCtrl.stats.mostRetweeted.userProfile.profileImageUrl}}">
+                            </span>
+                            <span class="tweet-author-name">
+                                {{statsCtrl.stats.mostRetweeted.userProfile.userName}}
+                            </span>
+                            <span class="tweet-author-screenName">
+                                @{{statsCtrl.stats.mostRetweeted.fromUserName}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="tweet-body">
+                    <div class="tweet-text">
+                        {{statsCtrl.stats.mostRetweeted.text}}
+                    </div>
+                    <span class="tweet-date">
+                        {{statsCtrol.stats.mostRetweeted.createdDate | date}}
+                    </span>
+                    <div class="tweet-stats">
+                        <span class="tweet-action">Retweeted: {{statsCtrl.stats.mostRetweeted.retweetCount}}</span>
+                        <span class="tweet-action">Favorited: {{statsCtrl.stats.mostRetweeted.favoriteCount}}</span>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+<form ng-submit="statsCtrl.getTweetStats()" novalidate ng-show="statsCtrl.isFetched">
+    <button type="submit">Get Tweet Stats</button>
+</form>
