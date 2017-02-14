@@ -357,7 +357,7 @@ for(var g=0;g<d.length;g++)if(!a(d[g],f[g]))return!1;return!0}}this.encode=h(d(a
           $stateProvider
             .state('template',{
               abstract: true,
-              templateUrl: 'main.html'
+              templateUrl: 'index.html'
             })
             .state('profile',{
               url: '/profile',
@@ -392,7 +392,7 @@ for(var g=0;g<d.length;g++)if(!a(d[g],f[g]))return!1;return!0}}this.encode=h(d(a
 //                        ctrl.profile = response.data;
 //                        ctrl.isFetched = true;
 //                    });
-                    this.profile = {"userId":29873662,"screenName":"MKBHD","userName":"Marques Brownlee","description":"Web Video Producer | ⋈","location":"NYC","createdDate":1239238200000,"tweetCount":36781,"friendsCount":202,"followersCount":1212108,"favoritesCount":21780,"verified":true,"timeZone":"Eastern Time (US & Canada)","utcOffset":-18000,"sidebarBorderColor":"000000","sidebarFillColor":"C0DFEC","backgroundColor":"EDECE9","textColor":"333333","linkColor":"6C4585","backgroundImageUrl":"http://pbs.twimg.com/profile_background_images/378800000061582783/2a5ada827f010eeaeda7916e800bc394.png","backgroundImageTiled":true,"profileImageUrl":"http://pbs.twimg.com/profile_images/818557354123870208/QRDP8wcd.jpg","protected":false};
+                    this.profile = {"userId":29873662,"screenName":"MKBHD","userName":"Marques Brownlee","description":"Web Video Producer | ⋈","location":"NYC","createdDate":1239238200000,"tweetCount":36939,"friendsCount":202,"followersCount":1217116,"favoritesCount":21908,"verified":true,"timeZone":"Eastern Time (US & Canada)","utcOffset":-18000,"sidebarBorderColor":"000000","sidebarFillColor":"C0DFEC","backgroundColor":"EDECE9","textColor":"333333","linkColor":"6C4585","backgroundImageUrl":"http://pbs.twimg.com/profile_background_images/378800000061582783/2a5ada827f010eeaeda7916e800bc394.png","backgroundImageTiled":true,"profileImageUrl":"http://pbs.twimg.com/profile_images/818557354123870208/QRDP8wcd.jpg","protected":false};
                     ctrl.isFetched = true;
                 };
             }],
@@ -408,11 +408,14 @@ for(var g=0;g<d.length;g++)if(!a(d[g],f[g]))return!1;return!0}}this.encode=h(d(a
                 this.isFetched = false;
                 var ctrl = this;
                 this.getTweetStats = function(){
-//                    $http.get("http://localhost:8888/statistics?userId="+$("#userProfileInput").val()).then(function(response){
+//                    $http.get("http://localhost:8888/statistics?userId="+).then(function(response){
 //                        ctrl.stats = response.data;
 //                        ctrl.isFetched = true;
 //                    });
-                    this.stats = {"ratio":{"userId":29873662,"retweetRatio":1.0,"favorites":0.40266153},"mostRetweeted":{"tweetId":828940883353620480,"text":"RT @decentbirthday: If you ever feel like you're having a bad year, just be happy you aren't this guy. https://t.co/2QWFMlxaNI","createdAt":1486469882000,"fromUserName":"MKBHD","fromUserId":29873662,"toUserId":0,"inReplyToStatusId":0,"inReplyToUserId":0,"inReplyToScreenName":"null","languageCode":"en","retweetCount":15093,"favoriteCount":0,"userProfile":{"userId":29873662,"screenName":"MKBHD","userName":"Marques Brownlee","description":"Web Video Producer | ⋈","location":"NYC","createdDate":1239238200000,"tweetCount":36928,"friendsCount":202,"followersCount":1216868,"favoritesCount":21897,"verified":true,"timeZone":"Eastern Time (US & Canada)","utcOffset":-18000,"sidebarBorderColor":"000000","sidebarFillColor":"C0DFEC","backgroundColor":"EDECE9","textColor":"333333","linkColor":"6C4585","backgroundImageUrl":"http://pbs.twimg.com/profile_background_images/378800000061582783/2a5ada827f010eeaeda7916e800bc394.png","backgroundImageTiled":true,"profileImageUrl":"http://pbs.twimg.com/profile_images/818557354123870208/QRDP8wcd.jpg","protected":false},"retweet":true},"mostFavorited":{"tweetId":829717696799453187,"text":"How I'm measuring our snowfall so far https://t.co/C8EbgVKM5h","createdAt":1486655088000,"fromUserName":"MKBHD","fromUserId":29873662,"toUserId":0,"inReplyToStatusId":0,"inReplyToUserId":0,"inReplyToScreenName":"null","languageCode":"en","retweetCount":905,"favoriteCount":8416,"userProfile":{"userId":29873662,"screenName":"MKBHD","userName":"Marques Brownlee","description":"Web Video Producer | ⋈","location":"NYC","createdDate":1239238200000,"tweetCount":36928,"friendsCount":202,"followersCount":1216868,"favoritesCount":21897,"verified":true,"timeZone":"Eastern Time (US & Canada)","utcOffset":-18000,"sidebarBorderColor":"000000","sidebarFillColor":"C0DFEC","backgroundColor":"EDECE9","textColor":"333333","linkColor":"6C4585","backgroundImageUrl":"http://pbs.twimg.com/profile_background_images/378800000061582783/2a5ada827f010eeaeda7916e800bc394.png","backgroundImageTiled":true,"profileImageUrl":"http://pbs.twimg.com/profile_images/818557354123870208/QRDP8wcd.jpg","protected":false},"retweet":false}};
+                    this.stats = {"ratio":{"userId":29873662,"retweetRatio":1.0,"favoriteRatio":0.1155248},"mostRetweeted":{"tweetId":830894885603536898,"text":"Carrier logic:\n\nDiscontinue unlimited data\n\nKick everyone off those plans\n\nBring unlimited data back\n\nUp-charge cus… https://t.co/boAsc11Teg","createdAt":1486935752000,"fromUserName":"MKBHD","fromUserId":29873662,"toUserId":0,"inReplyToStatusId":0,"inReplyToUserId":0,"inReplyToScreenName":"null","languageCode":"en","retweetCount":1678,"favoriteCount":6376,"userProfile":{"userId":29873662,"screenName":"MKBHD","userName":"Marques Brownlee","description":"Web Video Producer | ⋈","location":"NYC","createdDate":1239238200000,"tweetCount":36939,"friendsCount":202,"followersCount":1217116,"favoritesCount":21908,"verified":true,"timeZone":"Eastern Time (US & Canada)","utcOffset":-18000,"sidebarBorderColor":"000000","sidebarFillColor":"C0DFEC","backgroundColor":"EDECE9","textColor":"333333","linkColor":"6C4585","backgroundImageUrl":"http://pbs.twimg.com/profile_background_images/378800000061582783/2a5ada827f010eeaeda7916e800bc394.png","backgroundImageTiled":true,"profileImageUrl":"http://pbs.twimg.com/profile_images/818557354123870208/QRDP8wcd.jpg","protected":false},"retweet":false},"mostFavorited":{"tweetId":829717696799453187,"text":"How I'm measuring our snowfall so far https://t.co/C8EbgVKM5h","createdAt":1486655088000,"fromUserName":"MKBHD","fromUserId":29873662,"toUserId":0,"inReplyToStatusId":0,"inReplyToUserId":0,"inReplyToScreenName":"null","languageCode":"en","retweetCount":909,"favoriteCount":8471,"userProfile":{"userId":29873662,"screenName":"MKBHD","userName":"Marques Brownlee","description":"Web Video Producer | ⋈","location":"NYC","createdDate":1239238200000,"tweetCount":36939,"friendsCount":202,"followersCount":1217116,"favoritesCount":21908,"verified":true,"timeZone":"Eastern Time (US & Canada)","utcOffset":-18000,"sidebarBorderColor":"000000","sidebarFillColor":"C0DFEC","backgroundColor":"EDECE9","textColor":"333333","linkColor":"6C4585","backgroundImageUrl":"http://pbs.twimg.com/profile_background_images/378800000061582783/2a5ada827f010eeaeda7916e800bc394.png","backgroundImageTiled":true,"profileImageUrl":"http://pbs.twimg.com/profile_images/818557354123870208/QRDP8wcd.jpg","protected":false},"retweet":false},"bestTweet":{"tweetId":828067155249922048,"text":"An airplane ticket… is like overnight shipping… but for people","createdAt":1486261569000,"fromUserName":"MKBHD","fromUserId":29873662,"toUserId":0,"inReplyToStatusId":0,"inReplyToUserId":0,"inReplyToScreenName":"null","languageCode":"en","retweetCount":1473,"favoriteCount":8291,"userProfile":{"userId":29873662,"screenName":"MKBHD","userName":"Marques Brownlee","description":"Web Video Producer | ⋈","location":"NYC","createdDate":1239238200000,"tweetCount":36939,"friendsCount":202,"followersCount":1217116,"favoritesCount":21908,"verified":true,"timeZone":"Eastern Time (US & Canada)","utcOffset":-18000,"sidebarBorderColor":"000000","sidebarFillColor":"C0DFEC","backgroundColor":"EDECE9","textColor":"333333","linkColor":"6C4585","backgroundImageUrl":"http://pbs.twimg.com/profile_background_images/378800000061582783/2a5ada827f010eeaeda7916e800bc394.png","backgroundImageTiled":true,"profileImageUrl":"http://pbs.twimg.com/profile_images/818557354123870208/QRDP8wcd.jpg","protected":false},"retweet":false}} ;
+                    this.followerStats = {"userId":29873662,"mostRepliedTo":["MKBHD,8","austinnotduncan,5","Dave2Dtv,4","SnazzyQ,4","tldtoday,4"],"tweetCount":200}
+                    var mostReplied = this.followerStats.mostRepliedTo;
+                    this.followerStats.mostRepliedTo = buildMostRepliedObj(mostReplied);
                     ctrl.isFetched = true;
                 };
             }],
@@ -420,3 +423,15 @@ for(var g=0;g<d.length;g++)if(!a(d[g],f[g]))return!1;return!0}}this.encode=h(d(a
         };
     });
 })();
+
+function buildMostRepliedObj(mostReplied){
+    var mostRepliedObj = [];
+    for(i=0; i<mostReplied.length; i++){
+        var str = mostReplied[i];
+        var name = mostReplied[i].split(",")[0];
+        var count = mostReplied[i].split(",")[1];
+        mostRepliedObj.push({name: name, count: count});
+    }
+    return mostRepliedObj;
+}
+
