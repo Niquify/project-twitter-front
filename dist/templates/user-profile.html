@@ -1,6 +1,6 @@
 <h1 ng-hide="profileCtrl.isFetched">Search for a user.</h1>
-<form ng-submit="profileCtrl.getUserProfile()" novalidate>
-    <input ng-hide="profileCtrl.isFetched" type="text" id="userProfileInput" class="form-control" placeholder="Write the user's screen name" required/>
+<form ng-submit="profileCtrl.getUserProfile(user)" novalidate>
+    <input ng-hide="profileCtrl.isFetched" type="text" id="userProfileInput" ng-model="user" class="form-control" placeholder="Write the user's screen name" required/>
 </form>
 <div id="user-profile" ng-show="profileCtrl.isFetched">
     <div class="user-main">
@@ -9,15 +9,15 @@
         </div>
         <h3>{{profileCtrl.profile.userName}}<code>#{{profileCtrl.profile.userId}}</code></h3>
         <a href="https://twitter.com/{{profileCtrl.profile.screenName}}">@{{profileCtrl.profile.screenName}}</a>
-        <span>Location: {{profileCtrl.profile.location}}</span>
         <p><span>Bio: </span><br>{{profileCtrl.profile.description}}</p>
+        <span>Location: {{profileCtrl.profile.location}}</span>
     </div>
     <div class="profile-tweets">
         <div>
             Tweets: {{profileCtrl.profile.tweetCount}} |
             Following: {{profileCtrl.profile.friendsCount}} |
             Followers: {{profileCtrl.profile.followersCount}} |
-            Favorites: {{profileCtrl.profile.favoritesCount}} 
+            Favorites: {{profileCtrl.profile.favoritesCount}}
         </div>
     </div>
     <tweet-statistics></tweet-statistics>
