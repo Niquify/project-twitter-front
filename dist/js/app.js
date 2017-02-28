@@ -13,16 +13,17 @@
               templateUrl: 'profile.html',
               active: 'profile'
             })
-            .state('login',{
+            .state('main',{
               url: '',
-              templateUrl: 'login.html',
-              active: 'login'
+              templateUrl: 'main.html',
+              active: 'main'
             });
 
             $urlRouterProvider.otherwise('/profile');
         }
       ]);
 
+    // Nav controller used to know which tab should be active.
     app.controller('Nav-Controller', function($state){
         this.isActive = function(state){
             return $state.current.active == state;
@@ -36,15 +37,13 @@
             controller: ['$http', function($http){
                 this.isFetched = false;
                 var ctrl = this;
-                this.getUserProfile = function(user){
-                  console.log(user);
-                  $http.get("http://localhost:8081/profile?user="+user).then(function(response){
-                    console.log("Fetched")
-                     ctrl.profile = response.data;
-                     ctrl.isFetched = true;
-                  });
-                //this.profile = {"userId":29873662,"screenName":"MKBHD","userName":"Marques Brownlee","description":"Web Video Producer | ⋈","location":"NYC","createdDate":1239238200000,"tweetCount":36939,"friendsCount":202,"followersCount":1217116,"favoritesCount":21908,"verified":true,"timeZone":"Eastern Time (US & Canada)","utcOffset":-18000,"sidebarBorderColor":"000000","sidebarFillColor":"C0DFEC","backgroundColor":"EDECE9","textColor":"333333","linkColor":"6C4585","backgroundImageUrl":"http://pbs.twimg.com/profile_background_images/378800000061582783/2a5ada827f010eeaeda7916e800bc394.png","backgroundImageTiled":true,"profileImageUrl":"http://pbs.twimg.com/profile_images/818557354123870208/QRDP8wcd.jpg","protected":false};
-                //ctrl.isFetched = true;
+                this.getUserProfile = function(){
+//                    $http.get("http://localhost:8888/profile?user="+$("#userProfileInput").val()).then(function(response){
+//                        ctrl.profile = response.data;
+//                        ctrl.isFetched = true;
+//                    });
+                    this.profile = {"userId":29873662,"screenName":"MKBHD","userName":"Marques Brownlee","description":"Web Video Producer | ⋈","location":"NYC","createdDate":1239238200000,"tweetCount":36939,"friendsCount":202,"followersCount":1217116,"favoritesCount":21908,"verified":true,"timeZone":"Eastern Time (US & Canada)","utcOffset":-18000,"sidebarBorderColor":"000000","sidebarFillColor":"C0DFEC","backgroundColor":"EDECE9","textColor":"333333","linkColor":"6C4585","backgroundImageUrl":"http://pbs.twimg.com/profile_background_images/378800000061582783/2a5ada827f010eeaeda7916e800bc394.png","backgroundImageTiled":true,"profileImageUrl":"http://pbs.twimg.com/profile_images/818557354123870208/QRDP8wcd.jpg","protected":false};
+                    ctrl.isFetched = true;
                 };
             }],
             controllerAs: 'profileCtrl'
@@ -85,3 +84,4 @@ function buildMostRepliedObj(mostReplied){
     }
     return mostRepliedObj;
 }
+

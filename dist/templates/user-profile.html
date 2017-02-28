@@ -1,23 +1,52 @@
-<h1 ng-hide="profileCtrl.isFetched">Search for a user.</h1>
-<form ng-submit="profileCtrl.getUserProfile(user)" novalidate>
-    <input ng-hide="profileCtrl.isFetched" type="text" id="userProfileInput" ng-model="user" class="form-control" placeholder="Write the user's screen name" required/>
+<h3 id="profile-search-header" ng-hide="profileCtrl.isFetched">Search for the desired user</h1>
+<form ng-submit="profileCtrl.getUserProfile()" novalidate>
+    <input ng-hide="profileCtrl.isFetched" type="text" id="userProfileInput" class="form-control" placeholder="Write the user's screen name" required/>
 </form>
 <div id="user-profile" ng-show="profileCtrl.isFetched">
     <div class="user-main">
         <div id="profileImg" class="pull-left">
-            <img src="{{profileCtrl.profile.profileImageUrl}}" alt="Profile Picture"/>
+            <img src="{{profileCtrl.profile.profileImageUrl}}" alt="Profile Picture" />
         </div>
-        <h3>{{profileCtrl.profile.userName}}<code>#{{profileCtrl.profile.userId}}</code></h3>
-        <a href="https://twitter.com/{{profileCtrl.profile.screenName}}">@{{profileCtrl.profile.screenName}}</a>
-        <p><span>Bio: </span><br>{{profileCtrl.profile.description}}</p>
-        <span>Location: {{profileCtrl.profile.location}}</span>
+        <span class="profile-username">{{profileCtrl.profile.userName}}<code>#{{profileCtrl.profile.userId}}</code></span>
+        <div class="profile-screenName">
+            <a href="https://twitter.com/{{profileCtrl.profile.screenName}}">@{{profileCtrl.profile.screenName}}</a>
+
+        </div>
+        <p class="profile-bio">{{profileCtrl.profile.description}}</p>
+        <span class="profile-location">Location: {{profileCtrl.profile.location}}</span>
     </div>
-    <div class="profile-tweets">
-        <div>
-            Tweets: {{profileCtrl.profile.tweetCount}} |
-            Following: {{profileCtrl.profile.friendsCount}} |
-            Followers: {{profileCtrl.profile.followersCount}} |
-            Favorites: {{profileCtrl.profile.favoritesCount}}
+    <div class="profile-stats">
+        <div class="profile-stat">
+            <div class="profile-stat-name">
+                Tweets
+            </div>
+            <span class="profile-stat-count">
+                {{profileCtrl.profile.tweetCount}}
+            </span>
+        </div>
+        <div class="profile-stat">
+            <div class="profile-stat-name">
+                Following
+            </div>
+            <span class="profile-stat-count">
+                {{profileCtrl.profile.friendsCount}}
+            </span>
+        </div>    
+        <div class="profile-stat">
+            <div class="profile-stat-name">
+                Followers
+            </div>
+            <span class="profile-stat-count">
+              {{profileCtrl.profile.followersCount}}
+            </span>
+        </div>    
+        <div class="profile-stat">
+            <div class="profile-stat-name">
+                Favorites
+            </div>
+            <span class="profile-stat-count">
+              {{profileCtrl.profile.favoritesCount}}
+            </span>
         </div>
     </div>
     <tweet-statistics></tweet-statistics>

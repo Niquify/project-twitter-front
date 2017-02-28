@@ -1,23 +1,114 @@
 @import url("https://fonts.googleapis.com/css?family=Noto+Sans");
+@font-face {
+  font-family: liberation-regular;
+  src: url("../fonts/liberation-sans/LiberationSans-Regular.ttf"); }
+
+@font-face {
+  font-family: liberation-bold;
+  src: url("../fonts/liberation-sans/LiberationSans-Bold.ttf"); }
+
+@font-face {
+  font-family: liberation-italic;
+  src: url("../fonts/liberation-sans/LiberationSans-Italic.ttf"); }
+
 #inputUser-container {
   margin-bottom: 0.5em; }
 
-#profileImg img {
-  height: 128px;
-  width: auto;
-  border-radius: 8px; }
+#profile-search-header {
+  text-align: center;
+  font-size: 2em; }
+
+#userProfileInput {
+  width: 25%;
+  margin: 0 auto; }
 
 #profileImg {
   border: 5px solid #fff;
   border-radius: 12px; }
+  #profileImg img {
+    height: 128px;
+    width: auto;
+    border-radius: 8px; }
 
 .user-main {
-  height: 128px; }
+  padding: 5px;
+  height: 148px;
+  position: relative; }
+  .user-main .profile-username {
+    display: inline-block;
+    margin-top: 0.7em;
+    color: black;
+    font-size: 1.2em; }
+  .user-main .profile-screenName {
+    line-height: 0.5em;
+    margin-bottom: 0.7em;
+    font-size: 0.9em; }
+    .user-main .profile-screenName a:link,
+    .user-main .profile-screenName a:visited {
+      color: gray; }
+  .user-main .profile-location {
+    position: absolute;
+    bottom: 5px; }
+
+.screen-name {
+  color: gray;
+  line-height: 0.5em;
+  margin-bottom: 0.7em;
+  font-size: 0.9em; }
+
+.profile-stats {
+  overflow: auto; }
+  .profile-stats .profile-stat {
+    padding: 5px 10px;
+    float: left;
+    text-align: center;
+    border-right: 1px solid #1a252f; }
+    .profile-stats .profile-stat .profile-stat-name {
+      text-transform: uppercase;
+      font-size: 0.9em;
+      color: gray; }
+    .profile-stats .profile-stat .profile-stat-count {
+      font-family: 'liberation-bold';
+      font-size: 1.2em; }
+  .profile-stats :last-child {
+    border-right: none; }
+
+.stats-info {
+  color: gray;
+  display: block;
+  text-align: center; }
+
+#stats-form {
+  margin-top: 5%; }
+
+#getStatsBtn {
+  text-align: center; }
+
+.tweets-container .stat-header {
+  font-size: 1.3em;
+  margin: 0 auto; }
+
+.stats-header {
+  display: block;
+  width: 75%;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  padding-left: 5px;
+  padding-bottom: 9px;
+  border-bottom: 1px solid #c7c7c7;
+  font-size: 2em; }
+
+.stat-header {
+  text-align: center;
+  text-transform: uppercase;
+  font-family: 'liberation-bold'; }
 
 .tweet {
-  border: 1px solid #e1e8ed;
+  background: white;
+  border: 1px solid #cbd3d9;
   border-radius: 4px;
-  max-width: 520px; }
+  max-width: 520px;
+  margin-bottom: 1em; }
 
 .tweet-wrapper {
   padding: 20px 20px 11.6px 20px; }
@@ -115,4 +206,11 @@ body > .container {
   padding-left: 15px; }
 
 * {
-  box-sizing: border-box !important; }
+  box-sizing: border-box !important;
+  font-family: 'liberation-regular'; }
+
+body {
+  background-color: #F5F8FA !important; }
+
+.div-center {
+  text-align: center; }

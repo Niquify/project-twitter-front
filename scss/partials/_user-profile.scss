@@ -1,14 +1,115 @@
-#profileImg img{
-    height: 128px;
-    width: auto;
-    border-radius: 8px;
+#profile-search-header{
+    text-align: center;
+    font-size: 2em;
 }
 
-#profileImg{
-    border: 5px solid #fff;
+#userProfileInput{
+    width: 25%;
+    margin: 0 auto;
+}
+
+$um-profileImgSize: 128px;
+$um-profileImgBorder: 5px;
+#profileImg {
+    border: $um-profileImgBorder solid #fff;
     border-radius: 12px;
+    img {
+        height: $um-profileImgSize;
+        width: auto;
+        border-radius: 8px;
+    }
 }
 
-.user-main{
-    height: 128px;
+$um-padding: 5px;
+.user-main {
+    padding: $um-padding;
+    height: $um-profileImgSize + $um-profileImgBorder*2 + $um-padding*2; // Img height + border + padding
+    position: relative;
+    .profile-username{
+        display: inline-block; // Avoid border collapse for margin
+        margin-top: 0.7em;
+        color: black;
+        font-size: 1.2em;
+    }
+    .profile-screenName {
+        a:link,
+        a:visited {
+            color: gray;
+        }
+        line-height: 0.5em;
+        margin-bottom: 0.7em;
+        font-size: 0.9em;
+    }
+    .profile-location{
+        position: absolute;
+        bottom: $um-padding;
+    }
+}
+
+.screen-name{
+    color: gray;
+    line-height: 0.5em;
+    margin-bottom: 0.7em;
+    font-size: 0.9em;
+}
+
+.profile-stats{
+    overflow: auto;
+    .profile-stat{
+        padding: 5px 10px;
+        float: left;
+        text-align: center;
+        border-right: 1px solid darken($main-color, 10%);
+        .profile-stat-name{
+            text-transform: uppercase;
+            font-size: 0.9em;
+            color: gray;
+        }
+        .profile-stat-count{
+            font-family: 'liberation-bold';
+            font-size: 1.2em;
+        }
+    }
+    :last-child{
+        border-right: none;
+    }
+}
+
+.stats-info{
+    color: gray;
+    display: block;
+    text-align: center;
+}
+
+#stats-form{
+    margin-top: 5%;
+}
+
+#getStatsBtn{
+    text-align: center;
+}
+
+.tweets-container{
+    .stat-header{
+        font-size: 1.3em;
+        margin: 0 auto;
+    }
+    
+}
+
+.stats-header {
+    display: block;
+    width: 75%;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    padding-left: 5px;
+    padding-bottom: 9px;
+    border-bottom: 1px solid #c7c7c7;
+    font-size: 2em;
+}
+
+.stat-header{
+    text-align: center;
+    text-transform: uppercase;
+    font-family: 'liberation-bold'
 }
