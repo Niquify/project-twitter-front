@@ -11,6 +11,7 @@
 $um-profileImgSize: 128px;
 $um-profileImgBorder: 5px;
 #profileImg {
+    float: left;
     border: $um-profileImgBorder solid #fff;
     border-radius: 12px;
     img {
@@ -112,4 +113,26 @@ $um-padding: 5px;
     text-align: center;
     text-transform: uppercase;
     font-family: 'liberation-bold'
+}
+
+
+@media only screen and (max-width: 991px) {
+    .user-main, .profile-stats{
+        display: table;
+        margin: 0 auto;
+    }
+    .stats-header{
+        text-align: center;
+        width: 100%;
+    }
+    #userProfileInput{
+        width: 75%;
+    }
+}
+
+@media only screen and (max-width: 414px) {
+    .profile-wrapper{
+        display: table;
+        margin: 0 auto;
+    }
 }

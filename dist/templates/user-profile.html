@@ -4,8 +4,10 @@
 </form>
 <div id="user-profile" ng-show="profileCtrl.isFetched">
     <div class="user-main">
-        <div id="profileImg" class="pull-left">
-            <img src="{{profileCtrl.profile.profileImageUrl}}" alt="Profile Picture" />
+        <div class="profile-wrapper">
+            <div id="profileImg">
+                <img src="{{profileCtrl.profile.profileImageUrl}}" alt="Profile Picture" />
+            </div>
         </div>
         <span class="profile-username">{{profileCtrl.profile.userName}}<code>#{{profileCtrl.profile.userId}}</code></span>
         <div class="profile-screenName">
@@ -49,5 +51,6 @@
             </span>
         </div>
     </div>
-    <tweet-statistics></tweet-statistics>
 </div>
+<tweet-statistics ng-show="profileCtrl.isFetched"></tweet-statistics>
+

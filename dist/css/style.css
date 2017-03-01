@@ -30,6 +30,7 @@
 }
 
 #profileImg {
+  float: left;
   border: 5px solid #fff;
   border-radius: 12px;
 }
@@ -138,7 +139,32 @@
   font-family: 'liberation-bold';
 }
 
+@media only screen and (max-width: 991px) {
+  .user-main,
+  .profile-stats {
+    display: table;
+    margin: 0 auto;
+  }
+
+  .stats-header {
+    text-align: center;
+    width: 100%;
+  }
+
+  #userProfileInput {
+    width: 75%;
+  }
+}
+
+@media only screen and (max-width: 414px) {
+  .profile-wrapper {
+    display: table;
+    margin: 0 auto;
+  }
+}
+
 .tweet {
+  margin: 0 auto;
   background: white;
   border: 1px solid #cbd3d9;
   border-radius: 4px;
