@@ -25,6 +25,9 @@
             <li ng-class="{active: navCtrl.isActive('profile')}"><a href="#!/profile">My Profile</a></li>
             <li ng-class="{active: navCtrl.isActive('about')}"><a href="#about">About</a></li>
             <li ng-class="{active: navCtrl.isActive('contact')}"><a href="#contact">Contact</a></li>
+            <li class="pull-right" ng-controller="LoginController as loginCtrl" ng-hide="loginCtrl.isLogged()">
+              <button ng-click="loginCtrl.login()" href="">Login</button>
+            </li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
