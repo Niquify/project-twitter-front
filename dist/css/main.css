@@ -22,6 +22,13 @@
   width: 25%;
   margin: 0 auto; }
 
+#main-spinner {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin: -32.5px 0px 0px -32.5px; }
+
 #profileImg {
   float: left;
   border: 5px solid #fff;
@@ -41,7 +48,7 @@
     color: black;
     font-size: 1.2em; }
   .user-main .profile-screenName {
-    line-height: 0.5em;
+    line-height: 0.65em;
     margin-bottom: 0.7em;
     font-size: 0.9em; }
     .user-main .profile-screenName a:link,
@@ -221,6 +228,43 @@ body > .container {
 .footer > .container {
   padding-right: 15px;
   padding-left: 15px; }
+
+.spinner {
+  animation: rotator 1.4s linear infinite; }
+
+@keyframes rotator {
+  0% {
+    transform: rotate(0deg); }
+  100% {
+    transform: rotate(270deg); } }
+
+.path {
+  stroke-dasharray: 187;
+  stroke-dashoffset: 0;
+  transform-origin: center;
+  animation: dash 1.4s ease-in-out infinite, colors 5.6s ease-in-out infinite; }
+
+@keyframes colors {
+  0% {
+    stroke: #4285F4; }
+  25% {
+    stroke: #DE3E35; }
+  50% {
+    stroke: #F7C223; }
+  75% {
+    stroke: #1B9A59; }
+  100% {
+    stroke: #4285F4; } }
+
+@keyframes dash {
+  0% {
+    stroke-dashoffset: 187; }
+  50% {
+    stroke-dashoffset: 46.75;
+    transform: rotate(135deg); }
+  100% {
+    stroke-dashoffset: 187;
+    transform: rotate(450deg); } }
 
 * {
   box-sizing: border-box !important;

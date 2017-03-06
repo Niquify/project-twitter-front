@@ -1,3 +1,6 @@
+<svg id="main-spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+   <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+</svg>
 <h3 id="profile-search-header" ng-hide="profileCtrl.isFetched">Search for the desired user</h1>
 <form ng-submit="profileCtrl.getUserProfile()" novalidate>
     <input ng-hide="profileCtrl.isFetched" type="text" id="userProfileInput" class="form-control" placeholder="Write the user's screen name" required/>
@@ -12,7 +15,6 @@
         <span class="profile-username">{{profileCtrl.profile.userName}}<code>#{{profileCtrl.profile.userId}}</code></span>
         <div class="profile-screenName">
             <a href="https://twitter.com/{{profileCtrl.profile.screenName}}">@{{profileCtrl.profile.screenName}}</a>
-
         </div>
         <p class="profile-bio">{{profileCtrl.profile.description}}</p>
         <span class="profile-location">Location: {{profileCtrl.profile.location}}</span>
@@ -33,7 +35,7 @@
             <span class="profile-stat-count">
                 {{profileCtrl.profile.friendsCount}}
             </span>
-        </div>    
+        </div>
         <div class="profile-stat">
             <div class="profile-stat-name">
                 Followers
@@ -41,7 +43,7 @@
             <span class="profile-stat-count">
               {{profileCtrl.profile.followersCount}}
             </span>
-        </div>    
+        </div>
         <div class="profile-stat">
             <div class="profile-stat-name">
                 Favorites
@@ -53,4 +55,3 @@
     </div>
 </div>
 <tweet-statistics ng-show="profileCtrl.isFetched"></tweet-statistics>
-

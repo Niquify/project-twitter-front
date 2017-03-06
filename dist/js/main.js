@@ -385,7 +385,7 @@ for(var g=0;g<d.length;g++)if(!a(d[g],f[g]))return!1;return!0}}this.encode=h(d(a
                         $state.go("main");
                       }
                     }
-                    return config;
+                   return config;
                   },
 
                   // optional method
@@ -445,13 +445,18 @@ for(var g=0;g<d.length;g++)if(!a(d[g],f[g]))return!1;return!0}}this.encode=h(d(a
             controller: ['$http', function($http){
                 this.isFetched = false;
                 var ctrl = this;
+                this.userId;
+                this.screenName;
                 this.getUserProfile = function(){
-//                    $http.get("http://localhost:8888/profile?user="+$("#userProfileInput").val()).then(function(response){
-//                        ctrl.profile = response.data;
-//                        ctrl.isFetched = true;
-//                    });
-                    this.profile = {"userId":29873662,"screenName":"MKBHD","userName":"Marques Brownlee","description":"Web Video Producer | ⋈","location":"NYC","createdDate":1239238200000,"tweetCount":36939,"friendsCount":202,"followersCount":1217116,"favoritesCount":21908,"verified":true,"timeZone":"Eastern Time (US & Canada)","utcOffset":-18000,"sidebarBorderColor":"000000","sidebarFillColor":"C0DFEC","backgroundColor":"EDECE9","textColor":"333333","linkColor":"6C4585","backgroundImageUrl":"http://pbs.twimg.com/profile_background_images/378800000061582783/2a5ada827f010eeaeda7916e800bc394.png","backgroundImageTiled":true,"profileImageUrl":"http://pbs.twimg.com/profile_images/818557354123870208/QRDP8wcd.jpg","protected":false};
-                    ctrl.isFetched = true;
+                    this.screenName = document.getElementById("userProfileInput").value;
+                    toggleLoading();
+                    $http.get("http://localhost:3000/profile?user="+this.screenName).then(function(response){
+                       ctrl.profile = response.data;
+                       ctrl.isFetched = true;
+                       toggleLoading();
+                    });
+                    //this.profile = {"userId":29873662,"screenName":"MKBHD","userName":"Marques Brownlee","description":"Web Video Producer | ⋈","location":"NYC","createdDate":1239238200000,"tweetCount":36939,"friendsCount":202,"followersCount":1217116,"favoritesCount":21908,"verified":true,"timeZone":"Eastern Time (US & Canada)","utcOffset":-18000,"sidebarBorderColor":"000000","sidebarFillColor":"C0DFEC","backgroundColor":"EDECE9","textColor":"333333","linkColor":"6C4585","backgroundImageUrl":"http://pbs.twimg.com/profile_background_images/378800000061582783/2a5ada827f010eeaeda7916e800bc394.png","backgroundImageTiled":true,"profileImageUrl":"http://pbs.twimg.com/profile_images/818557354123870208/QRDP8wcd.jpg","protected":false};
+                    //ctrl.isFetched = true;
                 };
             }],
             controllerAs: 'profileCtrl'
@@ -491,3 +496,20 @@ for(var g=0;g<d.length;g++)if(!a(d[g],f[g]))return!1;return!0}}this.encode=h(d(a
         };
     });
 })();
+
+var loading = false;
+function toggleLoading(){
+  var spinner = document.getElementById("main-spinner");
+  if(loading){
+    spinner.style.display = "none";
+    loading = false;
+  } else {
+    spinner.style.display = "block";
+    loading = true;
+  }
+}
+
+var userInput = document.getElementById("userProfileInput");
+userInput.addEventListener("keyup", function(event){
+  
+});
