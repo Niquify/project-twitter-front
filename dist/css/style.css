@@ -27,6 +27,22 @@
 #userProfileInput {
   width: 25%;
   margin: 0 auto;
+  text-align: center;
+  font-size: 1.2em;
+}
+
+.invalid:focus {
+  border: 1px solid #ee5151 !important;
+  box-shadow: 0 0 5px #e34343 !important;
+}
+
+.help-inline {
+  vertical-align: middle;
+  padding-left: 5px;
+  display: table;
+  margin: 0 auto;
+  color: rgba(255, 41, 41, 0.82);
+  font-weight: lighter;
 }
 
 #main-spinner {
@@ -49,10 +65,21 @@
   border-radius: 8px;
 }
 
+.user-main,
+.profile-stats {
+  display: table;
+  margin: 0 auto;
+}
+
 .user-main {
   padding: 5px;
   height: 148px;
   position: relative;
+}
+
+.user-main .profile-wrapper {
+  display: table;
+  margin: 0 auto;
 }
 
 .user-main .profile-username {
@@ -148,12 +175,6 @@
 }
 
 @media only screen and (max-width: 991px) {
-  .user-main,
-  .profile-stats {
-    display: table;
-    margin: 0 auto;
-  }
-
   .stats-header {
     text-align: center;
     width: 100%;
@@ -299,7 +320,7 @@ body > .container {
   padding-left: 15px;
 }
 
-.spinner {
+#main-spinner {
   animation: rotator 1.4s linear infinite;
 }
 

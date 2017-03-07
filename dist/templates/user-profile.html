@@ -1,9 +1,13 @@
 <svg id="main-spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
    <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
 </svg>
-<h3 id="profile-search-header" ng-hide="profileCtrl.isFetched">Search for the desired user</h1>
-<form ng-submit="profileCtrl.getUserProfile()" novalidate>
-    <input ng-hide="profileCtrl.isFetched" type="text" id="userProfileInput" class="form-control" placeholder="Write the user's screen name" required/>
+<h3 id="profile-search-header" ng-hide="profileCtrl.isFetched">Search for a user</h1>
+<form name="form" ng-submit="form.$valid && profileCtrl.getUserProfile()" ng novalidate>
+    <div class="form-group">
+        <input class="form-control" name="input" ng-model="username" ng-class="{ 'invalid' : form.input.$invalid }" ng-pattern="/^[a-zA-Z0-9_]+$/" ng-maxlength="15" ng-minlength="1" ng-hide="profileCtrl.isFetched" type="text" id="userProfileInput" class="form-control" placeholder="Username..." required/>
+        <span class="help-inline" ng-show="form.input.$error.maxlength">Username is too long.</span>
+        <span class="help-inline" ng-show="form.input.$error.pattern">Invalid character.</span>
+    </div>
 </form>
 <div id="user-profile" ng-show="profileCtrl.isFetched">
     <div class="user-main">

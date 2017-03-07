@@ -6,17 +6,24 @@
 #userProfileInput{
     width: 25%;
     margin: 0 auto;
+    text-align: center;
+    font-size: 1.2em;
 }
 
-// #loading-modal{
-//   display: none;
-//   background: url("../img/loading.gif");
-//   background-size: $imageWidth+px $imageWidth+px;
-//   background-repeat: no-repeat;
-//
-//   height: $imageWidth+px;
-//   width: $imageWidth+px;
-// }
+.invalid:focus{
+    border: 1px solid rgb(238, 81, 81) !important;
+    box-shadow: 0 0 5px rgb(227, 67, 67) !important;
+}
+
+.help-inline{
+    vertical-align: middle;
+    padding-left: 5px;
+    display: table;
+    margin: 0 auto;
+    color: rgba(255, 41, 41, 0.82);
+    font-weight: lighter;
+}
+
 $imageWidth: 65;
 #main-spinner{
   display: none;
@@ -39,11 +46,20 @@ $um-profileImgBorder: 5px;
     }
 }
 
+.user-main, .profile-stats{
+    display: table;
+    margin: 0 auto;
+}
+
 $um-padding: 5px;
 .user-main {
     padding: $um-padding;
     height: $um-profileImgSize + $um-profileImgBorder*2 + $um-padding*2; // Img height + border + padding
     position: relative;
+    .profile-wrapper{
+        display: table;
+        margin: 0 auto;
+    }
     .profile-username{
         display: inline-block; // Avoid border collapse for margin
         margin-top: 0.7em;
@@ -135,10 +151,6 @@ $um-padding: 5px;
 
 
 @media only screen and (max-width: 991px) {
-    .user-main, .profile-stats{
-        display: table;
-        margin: 0 auto;
-    }
     .stats-header{
         text-align: center;
         width: 100%;
