@@ -1,1 +1,187 @@
-<user-profile></user-profile>
+<div id="profile" ng-controller="ProfileController as profileCtrl">
+    <svg id="main-spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+       <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+    </svg>
+    <h3 id="profile-search-header" ng-hide="profileCtrl.profileFetched">Search for a user</h3>
+    <form name="form" ng-submit="form.$valid && profileCtrl.getUserProfile()" ng novalidate>
+        <div class="form-group">
+            <input class="form-control" name="input" ng-model="username" ng-class="{ 'invalid' : form.input.$invalid }" ng-pattern="/^[a-zA-Z0-9_]+$/" ng-maxlength="15" ng-minlength="1" ng-hide="profileCtrl.profileFetched" type="text" id="userProfileInput" class="form-control" placeholder="Username..." required/>
+            <span class="help-inline" ng-show="form.input.$error.maxlength">Username is too long.</span>
+            <span class="help-inline" ng-show="form.input.$error.pattern">Invalid character.</span>
+        </div>
+    </form>
+    <div id="user-profile" ng-show="profileCtrl.profileFetched">
+        <div class="user-main">
+            <div class="profile-wrapper">
+                <div id="profileImg">
+                    <img src="{{profileCtrl.profile.profileImageUrl}}" alt="Profile Picture" />
+                </div>
+            </div>
+            <span class="profile-username">{{profileCtrl.profile.userName}}<code>#{{profileCtrl.profile.userId}}</code></span>
+            <div class="profile-screenName">
+                <a href="https://twitter.com/{{profileCtrl.profile.screenName}}">@{{profileCtrl.profile.screenName}}</a>
+            </div>
+            <p class="profile-bio">{{profileCtrl.profile.description}}</p>
+            <span class="profile-location">Location: {{profileCtrl.profile.location}}</span>
+        </div>
+        <div class="profile-stats">
+            <div class="profile-stat">
+                <div class="profile-stat-name">
+                    Tweets
+                </div>
+                <span class="profile-stat-count">
+                    {{profileCtrl.profile.tweetCount}}
+                </span>
+            </div>
+            <div class="profile-stat">
+                <div class="profile-stat-name">
+                    Following
+                </div>
+                <span class="profile-stat-count">
+                    {{profileCtrl.profile.friendsCount}}
+                </span>
+            </div>
+            <div class="profile-stat">
+                <div class="profile-stat-name">
+                    Followers
+                </div>
+                <span class="profile-stat-count">
+                  {{profileCtrl.profile.followersCount}}
+                </span>
+            </div>
+            <div class="profile-stat">
+                <div class="profile-stat-name">
+                    Favorites
+                </div>
+                <span class="profile-stat-count">
+                  {{profileCtrl.profile.favoritesCount}}
+                </span>
+            </div>
+        </div>
+    </div>
+    <div id="statistics" ng-controller="StatisticsController as statsCtrl" ng-show="profileCtrl.profileFetched">
+        <div class="tweet-statistics" ng-show="statsCtrl.statsFetched">
+            <header class="stats-header">Tweet statistics</header>
+            <div class="row">
+                <div class="tweets-container col-md-6">
+                    <div class="stat-header">Most <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></div>
+                    <div class="tweet">
+                        <div class="tweet-wrapper">
+                            <div class="tweet-content">
+                                <div class="tweet-header">
+                                    <div class="tweet-author">
+                                        <div class="tweet-author-link">
+                                            <span class="tweet-author-avatar">
+                                        <img class="tweet-avatar" alt="Avatar" src="{{statsCtrl.stats.mostRetweeted.userProfile.profileImageUrl}}">
+                                    </span>
+                                            <span class="tweet-author-name">
+                                        {{statsCtrl.stats.mostRetweeted.userProfile.userName}}
+                                    </span>
+                                            <span class="screen-name">
+                                        @{{statsCtrl.stats.mostRetweeted.fromUserName}}
+                                    </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tweet-body">
+                                    <div class="tweet-text">
+                                        {{statsCtrl.stats.mostRetweeted.text}}
+                                    </div>
+                                    <span class="tweet-date">
+                                {{statsCtrl.stats.mostRetweeted.createdAt | date}}
+                            </span>
+                                    <div class="tweet-stats">
+                                        <span class="tweet-action"> <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> {{statsCtrl.stats.mostRetweeted.retweetCount}}</span>
+                                        <span class="tweet-action"> <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> {{statsCtrl.stats.mostRetweeted.favoriteCount}}</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="stat-header">Most <span class="glyphicon glyphicon-heart" aria-hidden="true"></span></div>
+                    <div class="tweet">
+                        <div class="tweet-wrapper">
+                            <div class="tweet-content">
+                                <div class="tweet-header">
+                                    <div class="tweet-author">
+                                        <div class="tweet-author-link">
+                                            <span class="tweet-author-avatar">
+                                        <img class="tweet-avatar" alt="Avatar" src="{{statsCtrl.stats.mostFavorited.userProfile.profileImageUrl}}">
+                                    </span>
+                                            <span class="tweet-author-name">
+                                        {{statsCtrl.stats.mostFavorited.userProfile.userName}}
+                                    </span>
+                                            <span class="screen-name">
+                                        @{{statsCtrl.stats.mostFavorited.fromUserName}}
+                                    </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tweet-body">
+                                    <div class="tweet-text">
+                                        {{statsCtrl.stats.mostFavorited.text}}
+                                    </div>
+                                    <span class="tweet-date">
+                                {{statsCtrl.stats.mostFavorited.createdAt | date}}
+                            </span>
+                                    <div class="tweet-stats">
+                                        <span class="tweet-action"> <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> {{statsCtrl.stats.mostFavorited.retweetCount}}</span>
+                                        <span class="tweet-action"> <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> {{statsCtrl.stats.mostFavorited.favoriteCount}}</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="stat-header">Best tweet</div>
+                    <div class="tweet">
+                        <div class="tweet-wrapper">
+                            <div class="tweet-content">
+                                <div class="tweet-header">
+                                    <div class="tweet-author">
+                                        <div class="tweet-author-link">
+                                            <span class="tweet-author-avatar">
+                                        <img class="tweet-avatar" alt="Avatar" src="{{statsCtrl.stats.bestTweet.userProfile.profileImageUrl}}">
+                                    </span>
+                                            <span class="tweet-author-name">
+                                        {{statsCtrl.stats.bestTweet.userProfile.userName}}
+                                    </span>
+                                            <span class="screen-name">
+                                        @{{statsCtrl.stats.bestTweet.fromUserName}}
+                                    </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tweet-body">
+                                    <div class="tweet-text">
+                                        {{statsCtrl.stats.bestTweet.text}}
+                                    </div>
+                                    <span class="tweet-date">
+                                {{statsCtrl.stats.bestTweet.createdAt | date}}
+                            </span>
+                                    <div class="tweet-stats">
+                                        <span class="tweet-action"> <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> {{statsCtrl.stats.bestTweet.retweetCount}}</span>
+                                        <span class="tweet-action"> <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> {{statsCtrl.stats.bestTweet.favoriteCount}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h3>Numbers</h3><span>(Latest {{statsCtrl.followerStats.tweetCount}} tweets)</span>
+                    <ul ng-repeat="follower in statsCtrl.followerStats.mostRepliedTo">
+                        <li><a href="https://twitter.com/{{follower.name}}">@{{follower.name}}</a> with {{follower.count}} Mentions</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <form ng-submit="statsCtrl.getTweetStats()" id="stats-form" novalidate ng-hide="statsCtrl.statsFetched">
+            <span class="stats-info">Looks like there are no statistics here...</span>
+            <div class="div-center">
+                <button id="getStatsBtn" class="btn btn-success" type="submit">Get Statistics</button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -76,7 +76,6 @@
     .user-main .profile-screenName a:visited {
       color: gray; }
   .user-main .profile-location {
-    position: absolute;
     bottom: 5px; }
 
 .screen-name {
