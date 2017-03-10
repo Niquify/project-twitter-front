@@ -6,23 +6,28 @@
     <form name="form" ng-submit="form.$valid && profileCtrl.getUserProfile()" ng novalidate>
         <div class="form-group">
             <input class="form-control" name="input" ng-model="username" ng-class="{ 'invalid' : form.input.$invalid }" ng-pattern="/^[a-zA-Z0-9_]+$/" ng-maxlength="15" ng-minlength="1" ng-hide="profileCtrl.profileFetched" type="text" id="userProfileInput" class="form-control" placeholder="Username..." required/>
+            <button id="mobile-search" type="submit"></button> <!-- Submit button for mobile -->
             <span class="help-inline" ng-show="form.input.$error.maxlength">Username is too long.</span>
             <span class="help-inline" ng-show="form.input.$error.pattern">Invalid character.</span>
         </div>
     </form>
     <div id="user-profile" ng-show="profileCtrl.profileFetched">
-        <div class="user-main">
+        <div id="user-main" class="user-main">
             <div class="profile-wrapper">
                 <div id="profileImg">
                     <img src="{{profileCtrl.profile.profileImageUrl}}" alt="Profile Picture" />
                 </div>
             </div>
-            <span class="profile-username">{{profileCtrl.profile.userName}}<code>#{{profileCtrl.profile.userId}}</code></span>
-            <div class="profile-screenName">
-                <a href="https://twitter.com/{{profileCtrl.profile.screenName}}">@{{profileCtrl.profile.screenName}}</a>
+            <div class="profile-body-wrapper">
+                <div class="profile-body">
+                    <span class="profile-username">{{profileCtrl.profile.userName}}<code>#<span id="userId">{{profileCtrl.profile.userId}}</span></code></span>
+                    <div class="profile-screenName">
+                        <a href="https://twitter.com/{{profileCtrl.profile.screenName}}">@{{profileCtrl.profile.screenName}}</a>
+                    </div>
+                    <p class="profile-bio">{{profileCtrl.profile.description}}</p>
+                    <span class="profile-location">Location: {{profileCtrl.profile.location}}</span>
+                </div>
             </div>
-            <p class="profile-bio">{{profileCtrl.profile.description}}</p>
-            <span class="profile-location">Location: {{profileCtrl.profile.location}}</span>
         </div>
         <div class="profile-stats">
             <div class="profile-stat">
@@ -72,27 +77,27 @@
                                     <div class="tweet-author">
                                         <div class="tweet-author-link">
                                             <span class="tweet-author-avatar">
-                                        <img class="tweet-avatar" alt="Avatar" src="{{statsCtrl.stats.mostRetweeted.userProfile.profileImageUrl}}">
-                                    </span>
+                                                <img class="tweet-avatar" alt="Avatar" src="{{statsCtrl.userStatistics.mostRetweeted.userProfile.profileImageUrl}}">
+                                            </span>
                                             <span class="tweet-author-name">
-                                        {{statsCtrl.stats.mostRetweeted.userProfile.userName}}
-                                    </span>
+                                                {{statsCtrl.userStatistics.mostRetweeted.userProfile.userName}}
+                                            </span>
                                             <span class="screen-name">
-                                        @{{statsCtrl.stats.mostRetweeted.fromUserName}}
-                                    </span>
+                                                @{{statsCtrl.userStatistics.mostRetweeted.fromUserName}}
+                                            </span>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="tweet-body">
                                     <div class="tweet-text">
-                                        {{statsCtrl.stats.mostRetweeted.text}}
+                                        {{statsCtrl.userStatistics.mostRetweeted.text}}
                                     </div>
                                     <span class="tweet-date">
-                                {{statsCtrl.stats.mostRetweeted.createdAt | date}}
-                            </span>
+                                        {{statsCtrl.userStatistics.mostRetweeted.createdAt | date}}
+                                    </span>
                                     <div class="tweet-stats">
-                                        <span class="tweet-action"> <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> {{statsCtrl.stats.mostRetweeted.retweetCount}}</span>
-                                        <span class="tweet-action"> <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> {{statsCtrl.stats.mostRetweeted.favoriteCount}}</span>
+                                        <span class="tweet-action"> <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> {{statsCtrl.userStatistics.mostRetweeted.retweetCount}}</span>
+                                        <span class="tweet-action"> <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> {{statsCtrl.userStatistics.mostRetweeted.favoriteCount}}</span>
                                     </div>
                                 </div>
                             </div>
@@ -107,27 +112,27 @@
                                     <div class="tweet-author">
                                         <div class="tweet-author-link">
                                             <span class="tweet-author-avatar">
-                                        <img class="tweet-avatar" alt="Avatar" src="{{statsCtrl.stats.mostFavorited.userProfile.profileImageUrl}}">
-                                    </span>
+                                                <img class="tweet-avatar" alt="Avatar" src="{{statsCtrl.userStatistics.mostFavorited.userProfile.profileImageUrl}}">
+                                            </span>
                                             <span class="tweet-author-name">
-                                        {{statsCtrl.stats.mostFavorited.userProfile.userName}}
-                                    </span>
+                                                {{statsCtrl.userStatistics.mostFavorited.userProfile.userName}}
+                                            </span>
                                             <span class="screen-name">
-                                        @{{statsCtrl.stats.mostFavorited.fromUserName}}
-                                    </span>
+                                                @{{statsCtrl.userStatistics.mostFavorited.fromUserName}}
+                                            </span>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="tweet-body">
                                     <div class="tweet-text">
-                                        {{statsCtrl.stats.mostFavorited.text}}
+                                        {{statsCtrl.userStatistics.mostFavorited.text}}
                                     </div>
                                     <span class="tweet-date">
                                 {{statsCtrl.stats.mostFavorited.createdAt | date}}
                             </span>
                                     <div class="tweet-stats">
-                                        <span class="tweet-action"> <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> {{statsCtrl.stats.mostFavorited.retweetCount}}</span>
-                                        <span class="tweet-action"> <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> {{statsCtrl.stats.mostFavorited.favoriteCount}}</span>
+                                        <span class="tweet-action"> <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> {{statsCtrl.userStatistics.mostFavorited.retweetCount}}</span>
+                                        <span class="tweet-action"> <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> {{statsCtrl.userStatistics.mostFavorited.favoriteCount}}</span>
                                     </div>
                                 </div>
                             </div>
@@ -142,37 +147,38 @@
                                     <div class="tweet-author">
                                         <div class="tweet-author-link">
                                             <span class="tweet-author-avatar">
-                                        <img class="tweet-avatar" alt="Avatar" src="{{statsCtrl.stats.bestTweet.userProfile.profileImageUrl}}">
-                                    </span>
+                                                <img class="tweet-avatar" alt="Avatar" src="{{statsCtrl.userStatistics.bestTweet.userProfile.profileImageUrl}}">
+                                            </span>
                                             <span class="tweet-author-name">
-                                        {{statsCtrl.stats.bestTweet.userProfile.userName}}
-                                    </span>
+                                                {{statsCtrl.userStatistics.bestTweet.userProfile.userName}}
+                                            </span>
                                             <span class="screen-name">
-                                        @{{statsCtrl.stats.bestTweet.fromUserName}}
-                                    </span>
+                                                @{{statsCtrl.userStatistics.bestTweet.fromUserName}}
+                                            </span>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="tweet-body">
                                     <div class="tweet-text">
-                                        {{statsCtrl.stats.bestTweet.text}}
+                                        {{statsCtrl.userStatistics.bestTweet.text}}
                                     </div>
                                     <span class="tweet-date">
-                                {{statsCtrl.stats.bestTweet.createdAt | date}}
-                            </span>
+                                        {{statsCtrl.userStatistics.bestTweet.createdAt | date}}
+                                    </span>
                                     <div class="tweet-stats">
-                                        <span class="tweet-action"> <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> {{statsCtrl.stats.bestTweet.retweetCount}}</span>
-                                        <span class="tweet-action"> <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> {{statsCtrl.stats.bestTweet.favoriteCount}}</span>
+                                        <span class="tweet-action"> <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> {{statsCtrl.userStatistics.bestTweet.retweetCount}}</span>
+                                        <span class="tweet-action"> <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> {{statsCtrl.userStatistics.bestTweet.favoriteCount}}</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <h3>Numbers</h3><span>(Latest {{statsCtrl.followerStats.tweetCount}} tweets)</span>
-                    <ul ng-repeat="follower in statsCtrl.followerStats.mostRepliedTo">
-                        <li><a href="https://twitter.com/{{follower.name}}">@{{follower.name}}</a> with {{follower.count}} Mentions</li>
+                <div class="col-md-6 follower-statistics">
+                    <h3>Most interactions:</h3>
+                    <span>(Latest {{statsCtrl.userStatistics.userFollowerStatistics.tweetCount}} tweets)</span>
+                    <ul>
+                        <li ng-repeat="follower in statsCtrl.userStatistics.userFollowerStatistics.mostRepliedTo"><a href="https://twitter.com/{{follower.name}}">@{{follower.name}}</a> with {{follower.count}} Mentions</li>
                     </ul>
                 </div>
             </div>

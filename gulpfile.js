@@ -14,14 +14,14 @@ gulp.task('sass', function() {
 });
 
 gulp.task('concat-css', ['sass'], function() {
-  return gulp.src(['./dist/css/main.css', './lib/bootstrap/css/bootstrap.min.css'])
+  return gulp.src(['./dist/css/main.css', './lib/bootstrap/css/bootstrap.min.css','./lib/ng-notify/ng-notify.css'])
 	.pipe(concatCss('style.css'))
   .pipe(replace('/lib/bootstrap/fonts/','/fonts/'))
 	.pipe(gulp.dest('./dist/css/'));
 });
 
 gulp.task('concat-js', function() {
-  return gulp.src(['./lib/jquery/jquery-3.1.1.min.js','./lib/bootstrap/js/bootstrap.min.js','./lib/angular/angular.min.js', './lib/angular/angular-ui-router.min.js','./dist/js/app.js'])
+  return gulp.src(['./lib/jquery/jquery-3.1.1.min.js','./lib/bootstrap/js/bootstrap.min.js','./lib/angular/angular.min.js', './lib/angular/angular-ui-router.min.js','./lib/ng-notify/ng-notify.js','./dist/js/app.js'])
 	.pipe(concat('main.js'))
 	.pipe(gulp.dest('./dist/js/'));
 });

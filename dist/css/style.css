@@ -26,23 +26,38 @@
 }
 
 .login-btn {
-  right: 0px;
-  margin-right: 1em;
-  position: absolute;
-  height: 100%;
+  height: 60px;
   border-radius: 0px !important;
+  margin-right: 0.5em;
+  float: right;
 }
 
-@media only screen and (max-width: 767px) {
+@media only screen and (min-width: 767px) {
   .login-btn {
-    margin-right: 5em;
-    height: auto;
+    position: absolute;
+    right: 1em;
   }
+}
+
+.main-wrapper {
+  padding: 60px 25px;
+}
+
+#content {
+  width: auto;
+  padding: 40px 0px 0px;
+}
+
+#mobile-search {
+  display: hidden;
+  position: absolute;
+  left: -99999px;
 }
 
 #profile-search-header {
   text-align: center;
   font-size: 2em;
+  margin-top: 1em;
 }
 
 #userProfileInput {
@@ -69,6 +84,7 @@
 #main-spinner {
   display: none;
   position: fixed;
+  z-index: 10000;
   top: 50%;
   left: 50%;
   margin: -32.5px 0px 0px -32.5px;
@@ -81,7 +97,7 @@
 }
 
 #profileImg img {
-  height: 128px;
+  height: 168px;
   width: auto;
   border-radius: 8px;
 }
@@ -93,35 +109,53 @@
 }
 
 .user-main {
-  padding: 5px;
-  height: 148px;
   position: relative;
+  background: black;
+  width: 100%;
 }
 
 .user-main .profile-wrapper {
-  display: table;
-  margin: 0 auto;
+  position: absolute;
+  top: 3.5em;
+  margin-left: auto;
+  margin-right: auto;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
-.user-main .profile-username {
+.user-main .profile-body-wrapper {
+  background: #f5f8fa;
+  box-shadow: 0px -1px 0px 0px rgba(0, 0, 0, 0.17);
+}
+
+.user-main .profile-body-wrapper .profile-body {
+  margin: 0 auto;
+  margin-top: 9.5em;
+  padding: 15px;
+  padding-top: 80px;
+  background: #f5f8fa;
+  width: 65%;
+}
+
+.user-main .profile-body-wrapper .profile-body .profile-username {
   display: inline-block;
   margin-top: 0.7em;
   color: black;
   font-size: 1.2em;
 }
 
-.user-main .profile-screenName {
+.user-main .profile-body-wrapper .profile-body .profile-screenName {
   line-height: 0.65em;
   margin-bottom: 0.7em;
   font-size: 0.9em;
 }
 
-.user-main .profile-screenName a:link,
-.user-main .profile-screenName a:visited {
+.user-main .profile-body-wrapper .profile-body .profile-screenName a:link,
+.user-main .profile-body-wrapper .profile-body .profile-screenName a:visited {
   color: gray;
 }
 
-.user-main .profile-location {
+.user-main .profile-body-wrapper .profile-body .profile-location {
   bottom: 5px;
 }
 
@@ -156,6 +190,13 @@
 
 .profile-stats :last-child {
   border-right: none;
+}
+
+.tweet-statistics {
+  padding: 0px 15px;
+  margin: 0 auto;
+  display: table;
+  width: 85%;
 }
 
 .stats-info {
@@ -194,6 +235,15 @@
   font-family: 'liberation-bold';
 }
 
+.follower-statistics h3,
+.follower-statistics span {
+  text-align: center;
+}
+
+.follower-statistics ul {
+  list-style-type: none;
+}
+
 @media only screen and (max-width: 991px) {
   .stats-header {
     text-align: center;
@@ -201,14 +251,43 @@
   }
 
   #userProfileInput {
-    width: 75%;
+    width: 50%;
+  }
+
+  .tweet-statistics {
+    width: 100%;
   }
 }
 
-@media only screen and (max-width: 414px) {
-  .profile-wrapper {
-    display: table;
-    margin: 0 auto;
+@media only screen and (max-width: 767px) {
+  #userProfileInput {
+    width: 70%;
+  }
+
+  #content {
+    padding: 45px 0px 0px 0px !important;
+  }
+
+  .user-main {
+    padding: 0px;
+  }
+
+  user-main .profile-body {
+    width: 100% !important;
+  }
+}
+
+@media only screen and (max-width: 435px) {
+  #userProfileInput {
+    width: 80%;
+  }
+
+  .profile-stats {
+    font-size: 0.8em;
+  }
+
+  .user-main .profile-body {
+    width: 100% !important;
   }
 }
 
@@ -405,7 +484,7 @@ body > .container {
 }
 
 body {
-  background-color: #F5F8FA !important;
+  background-color: #f5f8fa !important;
 }
 
 .div-center {
@@ -9017,4 +9096,162 @@ a.list-group-item-danger.active:focus {
 
 .popover {
   color: #2c3e50;
+}
+.ngn {
+  color: #FFF;
+  cursor: default;
+  display: none;
+  font-size: 1.3em;
+  left: 0;
+  opacity: 1;
+  padding: 25px 80px;
+  position: fixed;
+  right: 0;
+  text-align: center;
+  user-select: none;
+  z-index: 9999;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.ngn-component {
+  position: absolute;
+}
+
+.ngn-top {
+  top: 0;
+}
+
+.ngn-bottom {
+  bottom: 0;
+}
+
+.ngn-dismiss {
+  background-color: #333;
+  border-radius: 15px;
+  box-shadow: inset 2px 2px 7px 2px #000;
+  color: #DDD;
+  cursor: pointer;
+  display: none;
+  font-size: 1.25em;
+  font-weight: 700;
+  height: 30px;
+  line-height: 30px;
+  opacity: .2;
+  position: absolute;
+  right: 40px;
+  text-shadow: 1px 1px 5px #000;
+  top: 25px;
+  width: 30px;
+}
+
+.ngn-sticky .ngn-dismiss {
+  display: block;
+}
+
+.ngn-dismiss:hover {
+  background-color: #000;
+}
+
+.ngn-dismiss:active {
+  background-color: #666;
+}
+
+@media only screen and (max-width:480px) {
+  .ngn {
+    font-size: 1em;
+    padding: 12px 25px;
+  }
+
+  .ngn-dismiss {
+    font-size: 1em;
+    height: 20px;
+    line-height: 20px;
+    right: 5px;
+    top: 5px;
+    width: 20px;
+  }
+}
+
+.ngn-info {
+  background-color: #0e90d2;
+}
+
+.ngn-error {
+  background-color: #dd514c;
+}
+
+.ngn-success {
+  background-color: #5eb95e;
+}
+
+.ngn-warn {
+  background-color: #f37b1d;
+}
+
+.ngn-grimace {
+  background-color: #8058a5;
+}
+
+.ngn-prime.ngn-info {
+  background-color: #03c;
+}
+
+.ngn-prime.ngn-error {
+  background-color: red;
+}
+
+.ngn-prime.ngn-success {
+  background-color: #0c0;
+}
+
+.ngn-prime.ngn-warn {
+  background-color: #f90;
+}
+
+.ngn-prime.ngn-grimace {
+  background-color: #609;
+}
+
+.ngn-pastel.ngn-info {
+  background-color: #7EA7D8;
+}
+
+.ngn-pastel.ngn-error {
+  background-color: #F6989D;
+}
+
+.ngn-pastel.ngn-success {
+  background-color: #82CA9D;
+}
+
+.ngn-pastel.ngn-warn {
+  background-color: #FDC68A;
+}
+
+.ngn-pastel.ngn-grimace {
+  background-color: #A187BE;
+}
+
+.ngn-pitchy.ngn-info {
+  background-color: #003471;
+}
+
+.ngn-pitchy.ngn-error {
+  background-color: #9E0B0F;
+}
+
+.ngn-pitchy.ngn-success {
+  background-color: #007236;
+}
+
+.ngn-pitchy.ngn-warn {
+  background-color: #A36209;
+}
+
+.ngn-pitchy.ngn-grimace {
+  background-color: #440E62;
 }

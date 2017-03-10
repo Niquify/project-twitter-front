@@ -1,6 +1,17 @@
+#content{
+    width: auto;
+    padding: 40px 0px 0px;
+}
+#mobile-search{
+    display: hidden;
+    position: absolute;
+    left: -99999px;
+}
+
 #profile-search-header{
     text-align: center;
     font-size: 2em;
+    margin-top: 1em;
 }
 
 #userProfileInput{
@@ -28,12 +39,13 @@ $imageWidth: 65;
 #main-spinner{
   display: none;
   position: fixed;
+    z-index: 10000;
   top: 50%;
   left: 50%;
   margin: (-$imageWidth/2)+px 0px 0px (-$imageWidth/2)+px;
 }
 
-$um-profileImgSize: 128px;
+$um-profileImgSize: 168px;
 $um-profileImgBorder: 5px;
 #profileImg {
     float: left;
@@ -53,30 +65,46 @@ $um-profileImgBorder: 5px;
 
 $um-padding: 5px;
 .user-main {
-    padding: $um-padding;
-    height: $um-profileImgSize + $um-profileImgBorder*2 + $um-padding*2; // Img height + border + padding
     position: relative;
+    background: black;
+    width: 100%;
     .profile-wrapper{
-        display: table;
-        margin: 0 auto;
+        position: absolute;
+        top: 3.5em;
+        margin-left: auto;
+        margin-right: auto;
+        left: 50%;
+        transform: translateX(-50%);
     }
-    .profile-username{
-        display: inline-block; // Avoid border collapse for margin
-        margin-top: 0.7em;
-        color: black;
-        font-size: 1.2em;
-    }
-    .profile-screenName {
-        a:link,
-        a:visited {
-            color: gray;
+    .profile-body-wrapper{
+        background: $background-color;
+        box-shadow: 0px -1px 0px 0px rgba(0, 0, 0, 0.17);
+        .profile-body{
+            margin: 0 auto;
+            margin-top: 9.5em;
+            padding: 15px;
+            padding-top: 80px;
+            background: $background-color;
+            width: 65%;
+            .profile-username{
+                display: inline-block; // Avoid border collapse for margin
+                margin-top: 0.7em;
+                color: black;
+                font-size: 1.2em;
+            }
+            .profile-screenName {
+                a:link,
+                a:visited {
+                    color: gray;
+                }
+                line-height: 0.65em;
+                margin-bottom: 0.7em;
+                font-size: 0.9em;
+            }
+            .profile-location{
+                bottom: $um-padding;
+            }
         }
-        line-height: 0.65em;
-        margin-bottom: 0.7em;
-        font-size: 0.9em;
-    }
-    .profile-location{
-        bottom: $um-padding;
     }
 }
 
@@ -107,6 +135,13 @@ $um-padding: 5px;
     :last-child{
         border-right: none;
     }
+}
+
+.tweet-statistics{
+    padding: 0px 15px;
+    margin: 0 auto;
+    display: table;
+    width: 85%;
 }
 
 .stats-info{
@@ -148,6 +183,15 @@ $um-padding: 5px;
     font-family: 'liberation-bold'
 }
 
+.follower-statistics{
+    h3, span{
+        text-align: center;
+    }
+    ul{
+        list-style-type: none;
+    }
+}
+
 
 @media only screen and (max-width: 991px) {
     .stats-header{
@@ -155,13 +199,38 @@ $um-padding: 5px;
         width: 100%;
     }
     #userProfileInput{
-        width: 75%;
+        width: 50%;
+    }
+    .tweet-statistics{
+        width: 100%;
     }
 }
 
-@media only screen and (max-width: 414px) {
-    .profile-wrapper{
-        display: table;
-        margin: 0 auto;
+@media only screen and (max-width: 767px){
+    
+    #userProfileInput{
+        width: 70%;
+    }
+    #content{
+        padding: 45px 0px 0px 0px !important;
+    }
+    .user-main{
+        padding: 0px;
+    }
+    user-main .profile-body{
+        width: 100% !important;
+    }
+}
+
+@media only screen and (max-width: 435px){
+    
+    #userProfileInput{
+        width: 80%;
+    }
+    .profile-stats{
+        font-size: 0.8em;
+    }
+    .user-main .profile-body{
+        width: 100% !important;
     }
 }
