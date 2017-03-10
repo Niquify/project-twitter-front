@@ -1,6 +1,7 @@
 @import './partials/variables';
 @import './partials/fonts';
 @import './partials/nav';
+@import './partials/mainpage';
 @import './partials/login';
 @import './partials/user-profile';
 @import './partials/tweet';
@@ -14,8 +15,4 @@
 
 body{
     background-color: $background-color !important;
-}
-
-.div-center{
-    text-align: center;
 }

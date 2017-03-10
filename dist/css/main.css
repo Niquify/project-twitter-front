@@ -16,8 +16,15 @@
   height: 100%;
   border: none; }
 
+.main-wrapper {
+  padding: 60px 25px; }
+
 #inputUser-container {
   margin-bottom: 0.5em; }
+
+@media only screen and (max-width: 767px) {
+  .main-wrapper {
+    padding: 20px 25px; } }
 
 .login-btn {
   height: 60px;
@@ -25,13 +32,19 @@
   margin-right: 0.5em;
   float: right; }
 
+.login-welcome {
+  float: right;
+  margin-right: 0.5em;
+  margin-top: 20px;
+  color: white; }
+
 @media only screen and (min-width: 767px) {
   .login-btn {
     position: absolute;
+    right: 1em; }
+  .login-welcome {
+    position: absolute;
     right: 1em; } }
-
-.main-wrapper {
-  padding: 60px 25px; }
 
 #content {
   width: auto;
@@ -160,7 +173,9 @@
   margin-top: 5%; }
 
 #getStatsBtn {
-  text-align: center; }
+  text-align: center;
+  margin: 0 auto;
+  display: table; }
 
 .tweets-container .stat-header {
   font-size: 1.3em;
@@ -360,6 +375,3 @@ body > .container {
 
 body {
   background-color: #f5f8fa !important; }
-
-.div-center {
-  text-align: center; }

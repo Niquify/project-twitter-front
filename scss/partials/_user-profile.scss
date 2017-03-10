@@ -156,6 +156,8 @@ $um-padding: 5px;
 
 #getStatsBtn{
     text-align: center;
+    margin: 0 auto;
+    display: table;
 }
 
 .tweets-container{
@@ -207,7 +209,7 @@ $um-padding: 5px;
 }
 
 @media only screen and (max-width: 767px){
-    
+
     #userProfileInput{
         width: 70%;
     }
@@ -223,7 +225,7 @@ $um-padding: 5px;
 }
 
 @media only screen and (max-width: 435px){
-    
+
     #userProfileInput{
         width: 80%;
     }

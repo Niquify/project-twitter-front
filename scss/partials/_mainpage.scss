@@ -1,0 +1,14 @@
+
+.main-wrapper{
+    padding: 60px 25px;
+}
+
+#inputUser-container {
+    margin-bottom: 0.5em;
+}
+
+@media only screen and (max-width: 767px){
+    .main-wrapper{
+        padding: 20px 25px;
+    }
+}
