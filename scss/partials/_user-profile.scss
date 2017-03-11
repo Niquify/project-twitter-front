@@ -8,6 +8,10 @@
     left: -99999px;
 }
 
+code{
+    padding: 0px !important;
+}
+
 #profile-search-header{
     text-align: center;
     font-size: 2em;
@@ -91,6 +95,7 @@ $um-padding: 5px;
                 margin-top: 0.7em;
                 color: black;
                 font-size: 1.2em;
+                font-weight: bold;
             }
             .profile-screenName {
                 a:link,
@@ -165,8 +170,18 @@ $um-padding: 5px;
         font-size: 1.3em;
         margin: 0 auto;
     }
-
 }
+
+.tweet-author-name{
+    line-height: 0.8em;
+    margin-top: 0.2em;
+}
+
+.screen-name{
+    a:link, :visited{
+        color: gray;
+    }
+} 
 
 .stats-header {
     display: block;
@@ -188,6 +203,13 @@ $um-padding: 5px;
 .follower-statistics{
     h3, span{
         text-align: center;
+    }
+    h3{
+        margin-bottom: 0px;
+    }
+    span{
+        display: table;
+        margin: 0 auto;
     }
     ul{
         list-style-type: none;
@@ -224,6 +246,12 @@ $um-padding: 5px;
     }
 }
 
+@media only screen and (max-width: 576px){
+    .user-main .profile-body{
+        width: 100% !important;
+    }
+}
+
 @media only screen and (max-width: 435px){
 
     #userProfileInput{
@@ -232,7 +260,10 @@ $um-padding: 5px;
     .profile-stats{
         font-size: 0.8em;
     }
-    .user-main .profile-body{
-        width: 100% !important;
+}
+
+@media only screen and (max-width: 339px){
+    .profile-stats .profile-stat{
+        padding: 5px 5px;
     }
 }

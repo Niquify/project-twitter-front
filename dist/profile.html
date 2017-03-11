@@ -6,7 +6,8 @@
     <form name="form" ng-submit="form.$valid && profileCtrl.getUserProfile()" ng novalidate>
         <div class="form-group">
             <input class="form-control" name="input" ng-model="username" ng-class="{ 'invalid' : form.input.$invalid }" ng-pattern="/^[a-zA-Z0-9_]+$/" ng-maxlength="15" ng-minlength="1" ng-hide="profileCtrl.profileFetched" type="text" id="userProfileInput" class="form-control" placeholder="Username..." required/>
-            <button id="mobile-search" type="submit"></button> <!-- Submit button for mobile -->
+            <!-- Submit button for mobile -->
+            <button id="mobile-search" type="submit"></button>
             <span class="help-inline" ng-show="form.input.$error.maxlength">Username is too long.</span>
             <span class="help-inline" ng-show="form.input.$error.pattern">Invalid character.</span>
         </div>
@@ -20,11 +21,13 @@
             </div>
             <div class="profile-body-wrapper">
                 <div class="profile-body">
-                    <span class="profile-username">{{profileCtrl.profile.userName}}<code>#<span id="userId">{{profileCtrl.profile.userId}}</span></code></span>
+                    <span class="profile-username">{{profileCtrl.profile.userName}}
+                    </span>
+                    <code>#<span id="userId">{{profileCtrl.profile.userId}}</span></code>
                     <div class="profile-screenName">
                         <a href="https://twitter.com/{{profileCtrl.profile.screenName}}">@{{profileCtrl.profile.screenName}}</a>
                     </div>
-                    <p class="profile-bio">{{profileCtrl.profile.description}}</p>
+                    <div class="profile-bio" ng-bind-html="profileCtrl.profile.description"></div>
                     <span class="profile-location">Location: {{profileCtrl.profile.location}}</span>
                 </div>
             </div>
@@ -83,14 +86,15 @@
                                                 {{statsCtrl.userStatistics.mostRetweeted.userProfile.userName}}
                                             </span>
                                             <span class="screen-name">
-                                                @{{statsCtrl.userStatistics.mostRetweeted.fromUserName}}
+                                                <a href="https://twitter.com/{{statsCtrl.userStatistics.mostRetweeted.fromUserName}}">
+                                                    @{{statsCtrl.userStatistics.mostRetweeted.fromUserName}}
+                                                </a>
                                             </span>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="tweet-body">
-                                    <div class="tweet-text">
-                                        {{statsCtrl.userStatistics.mostRetweeted.text}}
+                                    <div class="tweet-text" ng-bind-html="statsCtrl.userStatistics.mostRetweeted.text | linky">
                                     </div>
                                     <span class="tweet-date">
                                         {{statsCtrl.userStatistics.mostRetweeted.createdAt | date}}
@@ -118,18 +122,19 @@
                                                 {{statsCtrl.userStatistics.mostFavorited.userProfile.userName}}
                                             </span>
                                             <span class="screen-name">
-                                                @{{statsCtrl.userStatistics.mostFavorited.fromUserName}}
+                                               <a href="https://twitter.com/{{statsCtrl.userStatistics.mostFacorited.fromUserName}}">
+                                                    @{{statsCtrl.userStatistics.mostFavorited.fromUserName}}
+                                                </a>
                                             </span>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="tweet-body">
-                                    <div class="tweet-text">
-                                        {{statsCtrl.userStatistics.mostFavorited.text}}
+                                    <div class="tweet-text" ng-bind-html="statsCtrl.userStatistics.mostFavorited.text | linky">
                                     </div>
                                     <span class="tweet-date">
-                                {{statsCtrl.stats.mostFavorited.createdAt | date}}
-                            </span>
+                                        {{statsCtrl.userStatistics.mostFavorited.createdAt | date}}
+                                    </span>
                                     <div class="tweet-stats">
                                         <span class="tweet-action"> <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> {{statsCtrl.userStatistics.mostFavorited.retweetCount}}</span>
                                         <span class="tweet-action"> <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> {{statsCtrl.userStatistics.mostFavorited.favoriteCount}}</span>
@@ -153,14 +158,15 @@
                                                 {{statsCtrl.userStatistics.bestTweet.userProfile.userName}}
                                             </span>
                                             <span class="screen-name">
-                                                @{{statsCtrl.userStatistics.bestTweet.fromUserName}}
+                                                <a href="https://twitter.com/{{statsCtrl.userStatistics.bestTweet.fromUserName}}">
+                                                    @{{statsCtrl.userStatistics.bestTweet.fromUserName}}
+                                                </a>
                                             </span>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="tweet-body">
-                                    <div class="tweet-text">
-                                        {{statsCtrl.userStatistics.bestTweet.text}}
+                                    <div class="tweet-text" ng-bind-html="statsCtrl.userStatistics.bestTweet.text | linky">
                                     </div>
                                     <span class="tweet-date">
                                         {{statsCtrl.userStatistics.bestTweet.createdAt | date}}
@@ -175,7 +181,7 @@
                     </div>
                 </div>
                 <div class="col-md-6 follower-statistics">
-                    <h3>Most interactions:</h3>
+                    <h3>Most interactions</h3>
                     <span>(Latest {{statsCtrl.userStatistics.userFollowerStatistics.tweetCount}} tweets)</span>
                     <ul>
                         <li ng-repeat="follower in statsCtrl.userStatistics.userFollowerStatistics.mostRepliedTo"><a href="https://twitter.com/{{follower.name}}">@{{follower.name}}</a> with {{follower.count}} Mentions</li>
