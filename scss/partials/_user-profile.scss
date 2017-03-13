@@ -185,7 +185,7 @@ $um-padding: 5px;
 
 .stats-header {
     display: block;
-    width: 75%;
+    text-align: center;
     margin-top: 0.5em;
     margin-bottom: 0.5em;
     padding-left: 5px;
@@ -198,6 +198,18 @@ $um-padding: 5px;
     text-align: center;
     text-transform: uppercase;
     font-family: 'liberation-bold'
+}
+
+.glyphicon-heart{
+    color: #E2264D;
+}
+
+.glyphicon-retweet{
+    color: #17BF63;
+}
+
+.glyphicon-star{
+    color: #FF9F3F
 }
 
 .follower-statistics{
@@ -213,6 +225,31 @@ $um-padding: 5px;
     }
     ul{
         list-style-type: none;
+    }
+}
+
+#new-user{
+    position: absolute;
+    right: 0.5em;
+    background: none;
+    border: 0px;
+    z-index: 1000;
+    background: $background-color;
+    border-left: 1px solid darkgray;
+    border-right: 1px solid darkgray;
+    border-bottom: 1px solid darkgray;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    .glyphicon{
+        font-size: 1.3em;
+        color: dimgray;
+    }
+}
+
+#new-user:hover{
+    .glyphicon{
+        font-size: 1.3em;
+        color: black;
     }
 }
 

@@ -3,3 +3,29 @@
   height: 100%;
   border: none;
 }
+
+#wt-logo{
+    display: none;
+    img{
+        width: 40px;
+        height: auto;
+        margin-top: 10px;
+        margin-left: 10px;
+    }
+}
+
+#wt-text{
+    span{
+        color: $accent;
+        font-size: 1.1em;
+    }
+}
+
+@media only screen and (max-width: 435px){
+    #wt-text{
+        display: none;
+    }
+    #wt-logo{
+        display: inline;
+    }
+}

@@ -12,6 +12,9 @@
             <span class="help-inline" ng-show="form.input.$error.pattern">Invalid character.</span>
         </div>
     </form>
+    <button ng-show="profileCtrl.profileFetched" ng-click="profileCtrl.cleanProfile();" id="new-user">
+        <span  class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+    </button>
     <div id="user-profile" ng-show="profileCtrl.profileFetched">
         <div id="user-main" class="user-main">
             <div class="profile-wrapper">
@@ -68,11 +71,11 @@
         </div>
     </div>
     <div id="statistics" ng-controller="StatisticsController as statsCtrl" ng-show="profileCtrl.profileFetched">
-        <div class="tweet-statistics" ng-show="statsCtrl.statsFetched">
+        <div class="tweet-statistics" ng-show="statsCtrl.statsFetched && statsCtrl.userStatistics.mostRetweeted.userProfile.userName == profileCtrl.profile.userName">
             <header class="stats-header">Tweet statistics</header>
             <div class="row">
                 <div class="tweets-container col-md-6">
-                    <div class="stat-header">Most <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></div>
+                    <div class="stat-header">Most <span class="glyphicon glyphicon-retweet" aria-hidden="true"></span></div>
                     <div class="tweet">
                         <div class="tweet-wrapper">
                             <div class="tweet-content">
@@ -100,7 +103,7 @@
                                         {{statsCtrl.userStatistics.mostRetweeted.createdAt | date}}
                                     </span>
                                     <div class="tweet-stats">
-                                        <span class="tweet-action"> <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> {{statsCtrl.userStatistics.mostRetweeted.retweetCount}}</span>
+                                        <span class="tweet-action"> <span class="glyphicon glyphicon-retweet" aria-hidden="true"></span> {{statsCtrl.userStatistics.mostRetweeted.retweetCount}}</span>
                                         <span class="tweet-action"> <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> {{statsCtrl.userStatistics.mostRetweeted.favoriteCount}}</span>
                                     </div>
                                 </div>
@@ -136,7 +139,7 @@
                                         {{statsCtrl.userStatistics.mostFavorited.createdAt | date}}
                                     </span>
                                     <div class="tweet-stats">
-                                        <span class="tweet-action"> <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> {{statsCtrl.userStatistics.mostFavorited.retweetCount}}</span>
+                                        <span class="tweet-action"> <span class="glyphicon glyphicon-retweet" aria-hidden="true"></span> {{statsCtrl.userStatistics.mostFavorited.retweetCount}}</span>
                                         <span class="tweet-action"> <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> {{statsCtrl.userStatistics.mostFavorited.favoriteCount}}</span>
                                     </div>
                                 </div>
@@ -144,7 +147,7 @@
 
                         </div>
                     </div>
-                    <div class="stat-header">Best tweet</div>
+                    <div class="stat-header">Best <span class="glyphicon glyphicon-star" aria-hidden="true"></span></div>
                     <div class="tweet">
                         <div class="tweet-wrapper">
                             <div class="tweet-content">
@@ -172,7 +175,7 @@
                                         {{statsCtrl.userStatistics.bestTweet.createdAt | date}}
                                     </span>
                                     <div class="tweet-stats">
-                                        <span class="tweet-action"> <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> {{statsCtrl.userStatistics.bestTweet.retweetCount}}</span>
+                                        <span class="tweet-action"> <span class="glyphicon glyphicon-retweet" aria-hidden="true"></span> {{statsCtrl.userStatistics.bestTweet.retweetCount}}</span>
                                         <span class="tweet-action"> <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> {{statsCtrl.userStatistics.bestTweet.favoriteCount}}</span>
                                     </div>
                                 </div>
@@ -186,10 +189,14 @@
                     <ul>
                         <li ng-repeat="follower in statsCtrl.userStatistics.userFollowerStatistics.mostRepliedTo"><a href="https://twitter.com/{{follower.name}}">@{{follower.name}}</a> with {{follower.count}} Mentions</li>
                     </ul>
+                    <h3>Active tweeting hours</h3>
+                    <div id="chart-cont">
+                        <canvas id="tweetTimeChart"></canvas>
+                    </div>
                 </div>
             </div>
         </div>
-        <form ng-submit="statsCtrl.getTweetStats()" id="stats-form" novalidate ng-hide="statsCtrl.statsFetched">
+        <form ng-submit="statsCtrl.getTweetStats()" id="stats-form" novalidate ng-hide="statsCtrl.statsFetched && statsCtrl.userStatistics.mostRetweeted.userProfile.userName == profileCtrl.profile.userName">
             <span class="stats-info">Looks like there are no statistics here...</span>
             <div class="div-center">
                 <button id="getStatsBtn" class="btn btn-success" type="submit">Get Statistics</button>

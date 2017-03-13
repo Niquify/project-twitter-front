@@ -8,18 +8,32 @@
 
 .login-welcome{
   float: right;
-  margin-right: 0.5em;
+  margin-right: 0.2em;
   margin-top: 20px;
   color: white;
 }
 
+#logout{
+    color: white;
+    float: right;
+    padding: 0px;
+    margin-top: 20px;
+    height: 20px;
+    width: 20px;
+    background: none;
+}
+
+#logout:hover{
+    color: red;
+}
+
 @media only screen and (min-width: 767px){
-    .login-btn{
+    .login-btn, .login-welcome{
         position: absolute;
-        right: 1em;
+        right: 2em;
     }
-    .login-welcome{
+    #logout{
       position: absolute;
-      right: 1em;
+      right: 0.5em;
     }
 }

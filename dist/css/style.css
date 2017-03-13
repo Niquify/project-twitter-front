@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Noto+Sans");
+@import url("https://fonts.googleapis.com/css?family=Fredoka+One");
 @import url("https://fonts.googleapis.com/css?family=Lato:400,700,400italic");
 @font-face {
   font-family: liberation-regular;
@@ -19,6 +20,32 @@
   border-radius: 0px;
   height: 100%;
   border: none;
+}
+
+#wt-logo {
+  display: none;
+}
+
+#wt-logo img {
+  width: 40px;
+  height: auto;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+#wt-text span {
+  color: #18bc9c;
+  font-size: 1.1em;
+}
+
+@media only screen and (max-width: 435px) {
+  #wt-text {
+    display: none;
+  }
+
+  #wt-logo {
+    display: inline;
+  }
 }
 
 .main-wrapper {
@@ -44,20 +71,35 @@
 
 .login-welcome {
   float: right;
-  margin-right: 0.5em;
+  margin-right: 0.2em;
   margin-top: 20px;
   color: white;
 }
 
-@media only screen and (min-width: 767px) {
-  .login-btn {
-    position: absolute;
-    right: 1em;
-  }
+#logout {
+  color: white;
+  float: right;
+  padding: 0px;
+  margin-top: 20px;
+  height: 20px;
+  width: 20px;
+  background: none;
+}
 
+#logout:hover {
+  color: red;
+}
+
+@media only screen and (min-width: 767px) {
+  .login-btn,
   .login-welcome {
     position: absolute;
-    right: 1em;
+    right: 2em;
+  }
+
+  #logout {
+    position: absolute;
+    right: 0.5em;
   }
 }
 
@@ -255,7 +297,7 @@ code {
 
 .stats-header {
   display: block;
-  width: 75%;
+  text-align: center;
   margin-top: 0.5em;
   margin-bottom: 0.5em;
   padding-left: 5px;
@@ -268,6 +310,18 @@ code {
   text-align: center;
   text-transform: uppercase;
   font-family: 'liberation-bold';
+}
+
+.glyphicon-heart {
+  color: #E2264D;
+}
+
+.glyphicon-retweet {
+  color: #17BF63;
+}
+
+.glyphicon-star {
+  color: #FF9F3F;
 }
 
 .follower-statistics h3,
@@ -286,6 +340,30 @@ code {
 
 .follower-statistics ul {
   list-style-type: none;
+}
+
+#new-user {
+  position: absolute;
+  right: 0.5em;
+  background: none;
+  border: 0px;
+  z-index: 1000;
+  background: #f5f8fa;
+  border-left: 1px solid darkgray;
+  border-right: 1px solid darkgray;
+  border-bottom: 1px solid darkgray;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+#new-user .glyphicon {
+  font-size: 1.3em;
+  color: dimgray;
+}
+
+#new-user:hover .glyphicon {
+  font-size: 1.3em;
+  color: black;
 }
 
 @media only screen and (max-width: 991px) {

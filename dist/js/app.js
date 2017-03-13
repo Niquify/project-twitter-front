@@ -25,11 +25,11 @@
                     'request': function(config) {
                         var url = config.url;
                         // Si és una peticio per comprovar si l'usuari esta connectat, retornam per evitar un bucle infinit.
-                        if(url.startsWith("http://localhost:3000/check-login?")) return config;
+                        if(url.startsWith("http://192.168.1.2:3000/check-login?")) return config;
                         // Si el client té una apiId generada.
                         if(localStorage.getItem("apiId") != null){
                             // Comprovam si esta connectat i assigname una variable loggedStatus segons el resultat.
-                          $injector.get('$http').get("http://localhost:3000/check-login?apiId="+localStorage.getItem("apiId")).then(
+                          $injector.get('$http').get("http://192.168.1.2:3000/check-login?apiId="+localStorage.getItem("apiId")).then(
                             function(response){
                                 localStorage.setItem("loggedStatus",response.data);
                             },
@@ -48,7 +48,22 @@
                             }
                         }
                         return config;
-                    }
+                    },
+                    'responseError': function(rejection) {
+                        console.log(rejection);
+                        if(rejection.data.exception === "org.springframework.social.RateLimitExceededException"){
+                            $injector.get("ngNotify").set('Your rate limit has been exceeded, try again in a few minutes.','error');
+                        }
+                        if(rejection.data.exception === "org.springframework.social.NotAuthorizedException"){
+                            $injector.get("ngNotify").set('You are not authorized to access this user\'s data.','error');
+                        }
+                        if (rejection.data.exception == "org.springframework.social.ResourceNotFoundException"){
+                            $injector.get("ngNotify").set("User not found.",'error');
+                        }
+                        if(rejection.data.exception == "org.springframework.social.connect.NotConnectedException"){
+                            $injector.get("ngNotify").set("Please log in first.",'error');
+                        }
+                    },
                 };
               }]);
 
@@ -56,8 +71,15 @@
         }
     ]);
     
+    app.filter('twlink', function(){
+        return function(input){
+            var output = sanitizeTwitterLink(input);
+            return output;
+        }
+    })
+    
     // Funció que cerca links cap a twitter.
-    function sanitizeBio(input){
+    function sanitizeTwitterLink(input){
         // Fa match en cas de que trobi una '@' seguida d'una seqüència alfanumèrica, amb un espai a cada banda.
         // A més, comprova que no estigui dins d'un tag HTML, de manera que una vegada s'ha rodejat d'un tag <a> no tornarà a fer match.
         var regex = new RegExp("( @[a-zA-Z0-9]+ )(?![^<]*>|[^<>]*</)");
@@ -74,34 +96,59 @@
     }]);
 
     // Controlador que s'encarrega de determinar si l'usuari esta connectat o d'enviarlo cap a l'autorització OAuth1.
-    app.controller('LoginController', ['$http','$scope',function($http, $scope){
+    app.controller('LoginController', ['$http','$rootScope','ngNotify',function($http, $rootScope, ngNotify){
+      this.profile = JSON.parse(localStorage.getItem("profile"));    
       this.isLogged = function(){
-        return localStorage.getItem("loggedStatus") == "true";
+        var loggedStatus = localStorage.getItem("loggedStatus") == "true";
+        if(localStorage.getItem("profile") == undefined) this.getProfile();
+        return loggedStatus;
       };
+      this.getProfile = function(){
+        if(this.fetchingProfile) return;
+        this.fetchingProfile = true;
+        if(localStorage.getItem("loggedStatus") == "true"){
+            $http.get("http://192.168.1.2:3000/profile?apiId="+localStorage.getItem("apiId")).then(
+                function(response){
+                    localStorage.setItem("profile", JSON.stringify(response.data));
+                }
+            );
+        }  
+      };    
       this.login = function(){
         if(localStorage.getItem("apiId") == null){
             var id = Math.floor(Math.random() * 1000000000000000);
             localStorage.setItem("apiId", id);
         }
         // Popup cap a l'autorització
-        newwindow=window.open("http://localhost:3000/request_token?apiId="+localStorage.getItem("apiId"),"wt-twitter-login",'height=400,width=350');
+        newwindow=window.open("http://192.168.1.2:3000/request_token?apiId="+localStorage.getItem("apiId"),"wt-twitter-login",'height=400,width=350');
         // Focus al popup.
         if (window.focus) {newwindow.focus()}
       };
+      this.logout = function(){
+          if(localStorage.getItem("loggedStatus") == "true"){
+              $http.get("http://192.168.1.2:3000/logout?apiId="+localStorage.getItem("apiId")).then(
+                function(response){
+                    window.location.href = "http://192.168.1.2:8000/";
+                }
+              );
+          }
+      }
     }]);
     
     // Controlador que s'encarrega de fer la petició AJAX per recuperar el perfil de l'usuari.
     app.controller('ProfileController',  ['$http','$rootScope','ngNotify', function($http,$rootScope,ngNotify){
         this.profileFetched = false;
+        $rootScope.profileFetched = this.profileFetched;
         // Per poder accedir a this més endavant, guardam en variable.
         var ctrl = this;
         this.screenName;
         this.getUserProfile = function(){
+            console.log("Getting user profile...");
             this.screenName = document.getElementById("userProfileInput").value;
             toggleLoading();
             $http({
               method: 'GET',
-              url: 'http://localhost:3000/profile?user='+this.screenName+'&apiId='+localStorage.getItem("apiId"),
+              url: 'http://192.168.1.2:3000/profile?user='+this.screenName+'&apiId='+localStorage.getItem("apiId"),
               // transformResponse permet parsejar per el meu compte les respostes. 
               // Com els id d'usuari venen en forma de long, cada nombre passat els 16 caràcters sirà reemplaçat per '0'.
               transformResponse: [function(data){
@@ -115,23 +162,23 @@
               }]
             }).then(
                 function(response){ // Success
-                    ctrl.profile = response.data;
-                    // Reemplaçam els links de twitter en la seva biografia.
-                    ctrl.profile.description = sanitizeBio(ctrl.profile.description);
-                    $rootScope.profile = ctrl.profile;
-                    ctrl.profileFetched = true;
-                    toggleLoading();
-                    document.getElementById("user-main").style.background = "url("+ctrl.profile.backgroundImageUrl+")"
-                }, function(error){ // Error
-                    if(error.data.exception == "org.springframework.social.connect.NotConnectedException"){
-                        ngNotify.set("Please log in first.",'error');
-                    } else if (error.data.exception == "org.springframework.social.ResourceNotFoundException"){
-                        ngNotify.set("User not found.",'error');
-                    }
-                    toggleLoading();
+                    try{
+                        ctrl.profile = response.data;
+                        // Reemplaçam els links de twitter en la seva biografia.
+                        ctrl.profile.description = sanitizeTwitterLink(ctrl.profile.description);
+                        $rootScope.profile = ctrl.profile;
+                        ctrl.profileFetched = true;
+                        toggleLoading();
+                        document.getElementById("user-main").style.background = "url("+ctrl.profile.backgroundImageUrl+")";
+                    } catch(err){
+                        toggleLoading();
+                    } 
                 }
             );
         };
+        this.cleanProfile = function(){
+            this.profileFetched = false;
+        }
     }]);
 
     // Controlador que s'encarrega de fer la petició AJAX per recuperar les estadístiques del usuari.
@@ -141,15 +188,17 @@
         this.userStatistics;
         this.getTweetStats = function(){
             toggleLoading();
-            $http.get("http://localhost:3000/statistics?userId="+$rootScope.profile.userId+"&apiId="+localStorage.getItem("apiId")).then(
+            $http.get("http://192.168.1.2:3000/statistics?userId="+$rootScope.profile.userId+"&apiId="+localStorage.getItem("apiId")).then(
                 function(response){ // Success
                     toggleLoading();
                     ctrl.userStatistics = response.data;
                     var mostReplied = ctrl.userStatistics.userFollowerStatistics.mostRepliedTo;
                     ctrl.userStatistics.userFollowerStatistics.mostRepliedTo = buildMostRepliedObj(mostReplied);
+                    ctrl.renderTweetTimeChart();
                     ctrl.statsFetched = true;
                 }, function(data){ // Error
                     toggleLoading();
+                    console.log(data);
                     ngNotify.set('There was an error retrieving the statistics.', 'error');
                 }
             );
@@ -165,6 +214,43 @@
                 return mostRepliedObj;
             }
         };
+        this.cleanProfile = function(){
+            this.statsFetched = false;
+        };
+        this.renderTweetTimeChart = function(){
+            document.getElementById("tweetTimeChart").remove();
+            document.getElementById("chart-cont").innerHTML = "<canvas id=\"tweetTimeChart\"></canvas>";
+            var ctx = document.getElementById("tweetTimeChart").getContext("2d");
+            var entrySet = this.userStatistics.userTweetTime.entrySet;
+            var data = [];
+            var keys = Object.keys(this.userStatistics.userTweetTime.entrySet).sort();
+            for(i=0; i<keys.length; i++){
+                data.push(entrySet[keys[i]]);
+            }
+            var chart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    maintainAspectRatio: false,
+                    labels: keys,
+                    datasets: [{
+                        label: '# of Tweets',
+                        data: data,
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero:true
+                            }
+                        }],
+                    }
+                }
+            });
+        }
     }]);
 })();
 
