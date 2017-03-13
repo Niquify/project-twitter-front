@@ -345,6 +345,7 @@ code {
 #new-user {
   position: absolute;
   right: 0.5em;
+  margin-top: 5px;
   background: none;
   border: 0px;
   z-index: 1000;
@@ -382,6 +383,10 @@ code {
 }
 
 @media only screen and (max-width: 767px) {
+  #new-user {
+    margin-top: 0px;
+  }
+
   #userProfileInput {
     width: 70%;
   }
@@ -397,11 +402,19 @@ code {
   user-main .profile-body {
     width: 100% !important;
   }
+
+  #chart-cont canvas {
+    max-width: 339px;
+  }
 }
 
 @media only screen and (max-width: 576px) {
   .user-main .profile-body {
     width: 100% !important;
+  }
+
+  #chart-cont canvas {
+    max-width: 339px;
   }
 }
 
@@ -413,11 +426,19 @@ code {
   .profile-stats {
     font-size: 0.8em;
   }
+
+  #chart-cont canvas {
+    max-width: 339px;
+  }
 }
 
 @media only screen and (max-width: 339px) {
   .profile-stats .profile-stat {
     padding: 5px 5px;
+  }
+
+  #chart-cont canvas {
+    max-width: 339px;
   }
 }
 

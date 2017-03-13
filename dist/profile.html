@@ -30,7 +30,7 @@
                     <div class="profile-screenName">
                         <a href="https://twitter.com/{{profileCtrl.profile.screenName}}">@{{profileCtrl.profile.screenName}}</a>
                     </div>
-                    <div class="profile-bio" ng-bind-html="profileCtrl.profile.description"></div>
+                    <div class="profile-bio" ng-bind-html="profileCtrl.profile.description | linky | twlink"></div>
                     <span class="profile-location">Location: {{profileCtrl.profile.location}}</span>
                 </div>
             </div>
@@ -97,7 +97,7 @@
                                     </div>
                                 </div>
                                 <div class="tweet-body">
-                                    <div class="tweet-text" ng-bind-html="statsCtrl.userStatistics.mostRetweeted.text | linky">
+                                    <div class="tweet-text" ng-bind-html="statsCtrl.userStatistics.mostRetweeted.text | linky | twlink">
                                     </div>
                                     <span class="tweet-date">
                                         {{statsCtrl.userStatistics.mostRetweeted.createdAt | date}}
@@ -133,7 +133,7 @@
                                     </div>
                                 </div>
                                 <div class="tweet-body">
-                                    <div class="tweet-text" ng-bind-html="statsCtrl.userStatistics.mostFavorited.text | linky">
+                                    <div class="tweet-text" ng-bind-html="statsCtrl.userStatistics.mostFavorited.text | linky | twlink">
                                     </div>
                                     <span class="tweet-date">
                                         {{statsCtrl.userStatistics.mostFavorited.createdAt | date}}
@@ -169,7 +169,7 @@
                                     </div>
                                 </div>
                                 <div class="tweet-body">
-                                    <div class="tweet-text" ng-bind-html="statsCtrl.userStatistics.bestTweet.text | linky">
+                                    <div class="tweet-text" ng-bind-html="statsCtrl.userStatistics.bestTweet.text | linky | twlink">
                                     </div>
                                     <span class="tweet-date">
                                         {{statsCtrl.userStatistics.bestTweet.createdAt | date}}
