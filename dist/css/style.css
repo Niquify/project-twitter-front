@@ -145,15 +145,6 @@ code {
   font-weight: lighter;
 }
 
-#main-spinner {
-  display: none;
-  position: fixed;
-  z-index: 10000;
-  top: 50%;
-  left: 50%;
-  margin: -32.5px 0px 0px -32.5px;
-}
-
 #profileImg {
   float: left;
   border: 5px solid #fff;
@@ -358,6 +349,7 @@ code {
 }
 
 #new-user .glyphicon {
+  margin-top: 3px;
   font-size: 1.3em;
   color: dimgray;
 }
@@ -572,6 +564,24 @@ body > .container {
 
 #main-spinner {
   animation: rotator 1.4s linear infinite;
+}
+
+#main-spinner,
+#stats-spinner {
+  display: none;
+  position: fixed;
+  z-index: 10000;
+  margin: -32.5px 0px 0px -32.5px;
+}
+
+#main-spinner {
+  top: 50%;
+  left: 50%;
+}
+
+#stats-spinner {
+  left: 50%;
+  margin-top: 2%;
 }
 
 @keyframes rotator {

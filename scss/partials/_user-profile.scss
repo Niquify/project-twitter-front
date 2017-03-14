@@ -39,15 +39,6 @@ code{
     font-weight: lighter;
 }
 
-$imageWidth: 65;
-#main-spinner{
-  display: none;
-  position: fixed;
-    z-index: 10000;
-  top: 50%;
-  left: 50%;
-  margin: (-$imageWidth/2)+px 0px 0px (-$imageWidth/2)+px;
-}
 
 $um-profileImgSize: 168px;
 $um-profileImgBorder: 5px;
@@ -242,6 +233,7 @@ $um-padding: 5px;
     border-bottom-left-radius: 3px;
     border-bottom-right-radius: 3px;
     .glyphicon{
+        margin-top: 3px;
         font-size: 1.3em;
         color: dimgray;
     }

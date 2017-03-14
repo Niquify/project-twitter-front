@@ -19,7 +19,7 @@
 
             $urlRouterProvider.otherwise('/');
 
-            $provide.factory('loginInterceptor', ['$injector', function($injector) {
+            $provide.factory('interceptor', ['$injector', function($injector) {
                 return {
                   // optional method
                     'request': function(config) {
@@ -50,6 +50,7 @@
                         return config;
                     },
                     'responseError': function(rejection) {
+                        console.log(rejection);
                         if(rejection.data.exception === "org.springframework.social.RateLimitExceededException"){
                             $injector.get("ngNotify").set('Your rate limit has been exceeded, try again in a few minutes.','error');
                         }
@@ -62,12 +63,15 @@
                         if(rejection.data.exception == "org.springframework.social.connect.NotConnectedException"){
                             $injector.get("ngNotify").set("Please log in first.",'error');
                         }
+                        if(rejection.data.exception == "org.springframework.social.OperationNotPermittedException"){
+                            $injector.get("ngNotify").set("This account has been suspended.",'error');
+                        }
                         return rejection;
                     },
                 };
               }]);
 
-              $httpProvider.interceptors.push('loginInterceptor');
+              $httpProvider.interceptors.push('interceptor');
         }
     ]);
 
@@ -132,7 +136,7 @@
         this.screenName;
         this.getUserProfile = function(){
             this.screenName = document.getElementById("userProfileInput").value;
-            toggleLoading();
+            toggleLoading("main");
             $http({
               method: 'GET',
               url: 'http://localhost:3000/profile?user='+this.screenName+'&apiId='+localStorage.getItem("apiId"),
@@ -149,19 +153,16 @@
               }]
             }).then(
                 function(response){ // Success
-                    try{
-                        ctrl.profile = response.data;
-                        // Reemplaçam els links de twitter en la seva biografia.
-                        $rootScope.profile = ctrl.profile;
-                        ctrl.profileFetched = true;
-                        toggleLoading();
-                        document.getElementById("user-main").style.background = "url("+ctrl.profile.backgroundImageUrl+")";
-                        document.getElementById("user-main").style.backgroundSize = "cover";
-                        document.getElementById("user-main").style.backgroundPosition = "top center";
-                        document.getElementById("user-main").style.backgroundRepeat = "no-repeat";
-                    } catch(err){
-                        toggleLoading();
-                    }
+                    toggleLoading("main");
+                    if(response.status == "500") return;
+                    ctrl.profile = response.data;
+                    // Reemplaçam els links de twitter en la seva biografia.
+                    $rootScope.profile = ctrl.profile;
+                    ctrl.profileFetched = true;
+                    document.getElementById("user-main").style.background = "url("+ctrl.profile.backgroundImageUrl+")";
+                    document.getElementById("user-main").style.backgroundSize = "cover";
+                    document.getElementById("user-main").style.backgroundPosition = "top center";
+                    document.getElementById("user-main").style.backgroundRepeat = "no-repeat";
                 }
             );
         };
@@ -175,18 +176,24 @@
         this.statsFetched = false;
         var ctrl = this;
         this.userStatistics;
+        this.loading = false;
         this.getTweetStats = function(){
-            toggleLoading();
+            ngNotify.set('Retrieving the statistics, please wait..','info');
+            toggleLoading("stats");
+            this.loading = true;
             $http.get("http://localhost:3000/statistics?userId="+$rootScope.profile.userId+"&apiId="+localStorage.getItem("apiId")).then(
                 function(response){ // Success
-                    toggleLoading();
+                    toggleLoading("stats");
+                    ctrl.loading = false;
+                    if(response.status == "500") return;
                     ctrl.userStatistics = response.data;
                     var mostReplied = ctrl.userStatistics.userFollowerStatistics.mostRepliedTo;
                     ctrl.userStatistics.userFollowerStatistics.mostRepliedTo = buildMostRepliedObj(mostReplied);
                     ctrl.renderTweetTimeChart();
                     ctrl.statsFetched = true;
                 }, function(data){ // Error
-                    toggleLoading();
+                    toggleLoading("stats");
+                    this.loading = false;
                     ngNotify.set('There was an error retrieving the statistics.', 'error');
                 }
             );
@@ -243,9 +250,14 @@
 })();
 
 var loading = false;
-// Mostra o amaga el spinner
-function toggleLoading(){
-  var spinner = document.getElementById("main-spinner");
+// Mostra o amaga els spinners
+function toggleLoading(type){
+  var spinner;
+  if(type == "main"){
+    spinner = document.getElementById("main-spinner");
+  } else if(type == "stats"){
+    spinner = document.getElementById("stats-spinner");
+  }
   if(loading){
     spinner.style.display = "none";
     loading = false;

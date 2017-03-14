@@ -6,6 +6,24 @@ $duration: 1.4s;
   animation: rotator $duration linear infinite;
 }
 
+$imageWidth: 65;
+#main-spinner, #stats-spinner{
+  display: none;
+  position: fixed;
+  z-index: 10000;
+  margin: (-$imageWidth/2)+px 0px 0px (-$imageWidth/2)+px;
+}
+
+#main-spinner{
+  top: 50%;
+  left: 50%;
+}
+
+#stats-spinner{
+  left: 50%;
+  margin-top: 2%;
+}
+
 @keyframes rotator {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(270deg); }

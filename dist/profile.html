@@ -196,7 +196,10 @@
                 </div>
             </div>
         </div>
-        <form ng-submit="statsCtrl.getTweetStats()" id="stats-form" novalidate ng-hide="statsCtrl.statsFetched && statsCtrl.userStatistics.mostRetweeted.userProfile.userName == profileCtrl.profile.userName">
+        <svg id="stats-spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+           <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+        </svg>
+        <form ng-submit="statsCtrl.getTweetStats()" id="stats-form" novalidate ng-hide="statsCtrl.statsFetched && statsCtrl.userStatistics.mostRetweeted.userProfile.userName == profileCtrl.profile.userName || statsCtrl.loading">
             <span class="stats-info">Looks like there are no statistics here...</span>
             <div class="div-center">
                 <button id="getStatsBtn" class="btn btn-success" type="submit">Get Statistics</button>
