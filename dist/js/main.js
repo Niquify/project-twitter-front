@@ -1318,9 +1318,6 @@ if(e.display){var r=t.ctx,o=a(i.fontSize,g.defaultFontSize),s=a(i.fontStyle,g.de
                 return mostRepliedObj;
             }
         };
-        this.cleanProfile = function(){
-            this.statsFetched = false;
-        };
         this.renderTweetTimeChart = function(){
             document.getElementById("tweetTimeChart").remove();
             document.getElementById("chart-cont").innerHTML = "<canvas id=\"tweetTimeChart\"></canvas>";

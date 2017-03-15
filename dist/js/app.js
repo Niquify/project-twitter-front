@@ -209,9 +209,6 @@
                 return mostRepliedObj;
             }
         };
-        this.cleanProfile = function(){
-            this.statsFetched = false;
-        };
         this.renderTweetTimeChart = function(){
             document.getElementById("tweetTimeChart").remove();
             document.getElementById("chart-cont").innerHTML = "<canvas id=\"tweetTimeChart\"></canvas>";
