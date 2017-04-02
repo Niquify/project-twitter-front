@@ -1322,12 +1322,16 @@ if(e.display){var r=t.ctx,o=a(i.fontSize,g.defaultFontSize),s=a(i.fontStyle,g.de
             document.getElementById("tweetTimeChart").remove();
             document.getElementById("chart-cont").innerHTML = "<canvas id=\"tweetTimeChart\"></canvas>";
             var ctx = document.getElementById("tweetTimeChart").getContext("2d");
-            var entrySet = this.userStatistics.userTweetTime.entrySet;
+            var entrySet = this.userStatistics.userTweetTime.entrySet.replace(/[{},]/g, '');
+            var entrySet = entrySet.split(" ").sort();
             var data = [];
-            var keys = Object.keys(this.userStatistics.userTweetTime.entrySet).sort();
-            for(i=0; i<keys.length; i++){
-                data.push(entrySet[keys[i]]);
+            var keys = [];
+            for(i=0; i<entrySet.length; i++){
+                var fields = entrySet[i].split("=");
+                keys.push(fields[0]);
+                data.push(fields[1]);
             }
+            keys.sort();
             var chart = new Chart(ctx, {
                 type: 'line',
                 data: {
