@@ -21,7 +21,7 @@ gulp.task('concat-css', ['sass'], function() {
 });
 
 gulp.task('concat-js', function() {
-  return gulp.src(['./lib/jquery/jquery-3.1.1.min.js','./lib/bootstrap/js/bootstrap.min.js','./lib/angular/angular.min.js', './lib/angular/angular-ui-router.min.js','./lib/ng-sanitize/angular-sanitize.js','./lib/ng-notify/ng-notify.js','./lib/chart-js/chart.min.js','./dist/js/app.js'])
+  return gulp.src(['./lib/jquery/jquery-3.1.1.min.js','./lib/bootstrap/js/bootstrap.min.js','./lib/angular/angular.min.js', './lib/angular/angular-ui-router.min.js','./lib/ng-sanitize/angular-sanitize.js','./lib/ng-notify/ng-notify.js','./lib/chart-js/chart.min.js','./lib/vuejs/vue-2.2.6.js','./dist/js/app.js'])
 	.pipe(concat('main.js'))
 	.pipe(gulp.dest('./dist/js/'));
 });
