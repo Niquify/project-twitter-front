@@ -120,7 +120,7 @@
           if(localStorage.getItem("loggedStatus") == "true"){
               $http.get("http://localhost:3000/logout?apiId="+localStorage.getItem("apiId")).then(
                 function(response){
-                    window.location.href = "http://localhost:8000/";
+                    window.location.href = "http://wiretweet/";
                 }
               );
           }
