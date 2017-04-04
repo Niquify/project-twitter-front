@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/Niquify/twitter-project#readme",
   "devDependencies": {
+    "browserify": "^14.1.0",
     "gulp": "^3.9.1",
     "gulp-clean-css": "^2.3.2",
     "gulp-cli": "^1.2.2",
@@ -30,6 +31,8 @@
     "gulp-rename": "^1.2.2",
     "gulp-replace": "^0.5.4",
     "gulp-sass": "^3.1.0",
-    "gulp-uglify": "^2.0.1"
+    "gulp-uglify": "^2.0.1",
+    "vue": "^2.2.6",
+    "vueify": "^9.4.1"
   }
 }

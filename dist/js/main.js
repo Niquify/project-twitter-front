@@ -12574,8 +12574,9 @@ return VueRouter;
 })));
 
 (function(){
+    var home = require('./components/home.vue');
 
-    const st_home = { template: '<div>home</div>'};
+    const st_home = { template: home};
     const st_dashboard = { template: '<div>dashboard</div>'};
 
     var routes = [
